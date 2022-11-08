@@ -1,0 +1,39 @@
+server:
+  port: 8081
+spring:
+  datasource:
+    username: root
+    password: root
+    url: jdbc:mysql://192.168.80.100:3306/dandelion_use?useUnicode=true&characterEncoding=utf-8&useSSL=true&serverTimezone=Asia/Shanghai
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  # redis 连接参数信息
+  redis:
+    jedis:
+      pool:
+        max-active: 100
+        max-idle: 100
+        max-wait: 1000
+    host: 192.168.80.100
+    port: 6379
+# swagger
+swagger:
+  description: dandelion-learning使用结合
+  title: dandelion api文档接口
+  enabled: true
+# 系统自定义
+dandelion:
+  version: 1.0
+  name: L
+  url: https://github.com/l-001
+  email: https://github.com/l-001
+token:
+  header: Authorization
+  secret: dandelion
+  # 过期时间 ms
+  expireTime: 600000
+mybatis:
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+  mapper-locations:
+    - classpath:mapper/*.xml
+

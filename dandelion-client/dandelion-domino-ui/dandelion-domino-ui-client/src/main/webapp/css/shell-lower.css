@@ -1,0 +1,9 @@
+.gwt-code-button {
+    border-radius: 24px !important;
+    height: 45px !important;
+    width: 130px;
+    position: fixed;
+    right: 16px;
+    bottom: 50px;
+    z-index: 10;
+}
