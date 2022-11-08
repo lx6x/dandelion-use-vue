@@ -36,6 +36,7 @@ dandelion-use
 
 调用流程  
 
+待完善
 
 
 ---
@@ -103,7 +104,6 @@ public class UsernamePasswordAuthenticationToken extends AbstractAuthenticationT
      * 设置是否已经认证
      *
      * @param isAuthenticated 是否通过验证
-     * @throws IllegalArgumentException
      */
     public void setAuthenticated(boolean isAuthenticated) throws IllegalArgumentException {
         Assert.isTrue(!isAuthenticated, "Cannot set this token to trusted - use constructor which takes a GrantedAuthority list instead");
