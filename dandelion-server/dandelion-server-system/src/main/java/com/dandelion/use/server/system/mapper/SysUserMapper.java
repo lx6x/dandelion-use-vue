@@ -23,4 +23,6 @@ public interface SysUserMapper {
      * @author L
      */
     SysUser selectUserByName(String userName);
+    SysUser selectUserByPhone(String phone);
+    SysUser selectUserByEmail(String email);
 }

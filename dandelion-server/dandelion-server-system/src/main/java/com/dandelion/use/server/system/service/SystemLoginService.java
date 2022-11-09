@@ -1,7 +1,5 @@
 package com.dandelion.use.server.system.service;
 
-import com.dandelion.use.server.common.core.entity.SysUser;
-
 /**
  * TODO 登录
  *
@@ -16,7 +14,8 @@ public interface SystemLoginService {
      *
      * @param username 用户名
      * @param password 密码
-     * @return SysUser
+     * @return token
      */
-    SysUser login(String username, String password);
+    String login(String username, String password);
+
 }

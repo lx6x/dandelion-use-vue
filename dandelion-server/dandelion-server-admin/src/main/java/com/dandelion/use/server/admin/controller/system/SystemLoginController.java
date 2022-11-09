@@ -2,7 +2,6 @@ package com.dandelion.use.server.admin.controller.system;
 
 import com.dandelion.use.server.common.annotation.RepeatSubmit;
 import com.dandelion.use.server.common.core.R;
-import com.dandelion.use.server.common.core.entity.SysUser;
 import com.dandelion.use.server.common.core.model.LoginInfo;
 import com.dandelion.use.server.system.service.SystemLoginService;
 import io.swagger.annotations.Api;
@@ -38,7 +37,7 @@ public class SystemLoginController {
     @RepeatSubmit
     @ApiOperation(value = "登录方法", notes = "用户登录方法")
     @PostMapping("/login")
-    public R<SysUser> login(@RequestBody LoginInfo loginInfo) {
+    public R<String> login(@RequestBody LoginInfo loginInfo) {
         return R.success(systemLoginService.login(loginInfo.getUserName(),loginInfo.getPassword()));
     }
 }
