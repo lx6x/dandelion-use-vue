@@ -1,8 +1,7 @@
 package com.dandelion.gwt.domino.ui.client.ui.application.content.screen01;
 
 import com.dandelion.gwt.domino.ui.shared.model.MyModel;
-import com.dandelion.gwt.domino.ui.shared.model.oss.OSSObjectSummaryDTO;
-import com.dandelion.gwt.domino.ui.shared.service.OssServiceFactory;
+import com.dandelion.gwt.domino.ui.shared.service.DominoUiServiceFactory;
 import com.github.nalukit.nalu.client.component.AbstractComponent;
 import com.google.gwt.user.client.Window;
 import elemental2.dom.*;
@@ -44,30 +43,24 @@ public class Screen01Component extends AbstractComponent<IScreen01Component.Cont
         // it is a good idea to edit and flush the data inside the presenter.
 
 
-        ListGroup<OSSObjectSummaryDTO> listGroup = ListGroup.create();
+        ListGroup<String> listGroup = ListGroup.create();
 
-        OssServiceFactory.INSTANCE.getBucketList(null).onSuccess(listGroup::setItems).send();
+//        OssServiceFactory.INSTANCE.getBucketList(null).onSuccess(listGroup::setItems).send();
+
+        DominoUiServiceFactory.INSTANCE.getList("10").onSuccess(listGroup::setItems).send();
 
         card1.appendChild(listGroup.setItemRenderer((listGroup1, listItem) -> {
-            listItem.setSelectable(true).appendChild(
-                    FlexLayout.create().apply(self -> {
-                        OSSObjectSummaryDTO value = listItem.getValue();
-                        String key = value.getKey();
+            listItem.setSelectable(true).appendChild(FlexLayout.create().apply(self -> {
+                String value = listItem.getValue();
 
-//                    StringUtil
-//
-//                    GWT.log(key.substring());
-                        self.css(Color.GREY_LIGHTEN_4.getBackground());
+                self.css(Color.GREY_LIGHTEN_4.getBackground());
 
-                        self.appendChild(
-                                FlexItem.create().apply(self1 -> {
+                self.appendChild(FlexItem.create().apply(self1 -> {
 
-                                    self1.appendChild(Row_12.create().appendChild(Column.span12().appendChild(p().add(key))));
-                                })
-                        );
+                    self1.appendChild(Row_12.create().appendChild(Column.span12().appendChild(p().add(value))));
+                }));
 
-                    })
-            );
+            }));
         }));
 
         card1.setTitle(model.getActiveScreen());
@@ -117,8 +110,7 @@ public class Screen01Component extends AbstractComponent<IScreen01Component.Cont
      * @author L-jf
      */
     private void createHiddenInput() {
-        hiddenFileInput = input("file")
-                .style("visibility: hidden; position: absolute; top: 0px; left: 0px; height: 0px; width: 0px;").element();
+        hiddenFileInput = input("file").style("visibility: hidden; position: absolute; top: 0px; left: 0px; height: 0px; width: 0px;").element();
         DomGlobal.document.body.appendChild(hiddenFileInput);
     }
 

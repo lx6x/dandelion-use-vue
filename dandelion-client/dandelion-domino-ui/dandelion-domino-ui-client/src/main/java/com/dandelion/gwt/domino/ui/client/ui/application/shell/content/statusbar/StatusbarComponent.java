@@ -29,7 +29,7 @@ public class StatusbarComponent extends AbstractComponent<IStatusbarComponent.Co
     public void render() {
 
         HTMLElement illustrate = Elements.span().css("title").style("mar").element();
-        illustrate.textContent="Copyright © 2020 - 2021 www.liujf.xyz 备案/许可证编号：京ICP备2021004282号";
+        illustrate.textContent="Copyright © 2020 - 2022 www.liujf.xyz 备案/许可证编号：京ICP备2021004282号";
         messageInfo = Elements.div().element();
         initElement(Row.create()
                 .style()

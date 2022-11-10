@@ -1,12 +1,12 @@
 package com.dandelion.gwt.domino.ui.client.ui.application.content.screen01;
 
 import com.dandelion.gwt.domino.ui.client.DandelionDominoUiContext;
+import com.dandelion.gwt.domino.ui.client.event.StatusChangeEvent;
 import com.dandelion.gwt.domino.ui.shared.model.MyModel;
 import com.github.nalukit.nalu.client.component.AbstractComponentController;
 import com.github.nalukit.nalu.client.component.annotation.Controller;
 import elemental2.dom.DomGlobal;
 import elemental2.dom.HTMLElement;
-import com.dandelion.gwt.domino.ui.client.event.StatusChangeEvent;
 
 /**
  * TODO 页面一   需要启动 【dandelion-oss 进行测试】
@@ -27,7 +27,7 @@ public class Screen01Controller extends AbstractComponentController<DandelionDom
 
     @Override
     public void start() {
-        model = new MyModel("文件列表");
+        model = new MyModel("client --> server date test");
         component.edit(model);
         // update the statusbar at the bottom of the screen
         eventBus.fireEvent(new StatusChangeEvent("active screen: >>Screen01<<"));

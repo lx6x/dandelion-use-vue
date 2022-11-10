@@ -1,11 +1,11 @@
 package com.dandelion.gwt.domino.ui.client.ui.application.content.screen02;
 
 import com.dandelion.gwt.domino.ui.client.DandelionDominoUiContext;
+import com.dandelion.gwt.domino.ui.client.event.StatusChangeEvent;
 import com.dandelion.gwt.domino.ui.shared.model.MyModel;
 import com.github.nalukit.nalu.client.component.AbstractComponentController;
 import com.github.nalukit.nalu.client.component.annotation.Controller;
 import elemental2.dom.HTMLElement;
-import com.dandelion.gwt.domino.ui.client.event.StatusChangeEvent;
 
 /**
  * TODO 页面一传值
