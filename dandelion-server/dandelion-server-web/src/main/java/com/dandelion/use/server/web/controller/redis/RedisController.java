@@ -1,4 +1,4 @@
-package com.dandelion.use.server.admin.controller.redis;
+package com.dandelion.use.server.web.controller.redis;
 
 import com.dandelion.use.server.common.utils.RedisUtils;
 import io.swagger.v3.oas.annotations.Operation;

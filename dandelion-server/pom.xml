@@ -9,7 +9,7 @@
     <artifactId>dandelion-server</artifactId>
     <packaging>pom</packaging>
     <modules>
-        <module>dandelion-server-admin</module>
+        <module>dandelion-server-web</module>
         <module>dandelion-server-common</module>
         <module>dandelion-server-framework</module>
         <module>dandelion-server-system</module>

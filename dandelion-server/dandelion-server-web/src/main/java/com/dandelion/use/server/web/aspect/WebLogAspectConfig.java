@@ -1,4 +1,4 @@
-package com.dandelion.use.server.admin.aspect;
+package com.dandelion.use.server.web.aspect;
 
 
 import cn.hutool.core.util.StrUtil;
@@ -39,7 +39,7 @@ import java.util.Map;
 public class WebLogAspectConfig {
     private static final Logger LOGGER = LoggerFactory.getLogger(WebLogAspectConfig.class);
 
-    @Pointcut("execution(public * com.dandelion.use.server.admin.controller.*.*.*(..))")
+    @Pointcut("execution(public * com.dandelion.use.server.web.controller.*.*.*(..))")
     public void webLog() {
     }
 
