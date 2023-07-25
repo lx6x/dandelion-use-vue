@@ -3,7 +3,7 @@ package com.dandelion.use.server.common.annotation;
 import java.lang.annotation.*;
 
 /**
- * TODO 重复提交注解验证
+ * 重复提交注解验证
  *
  * @author L
  * @version 1.0

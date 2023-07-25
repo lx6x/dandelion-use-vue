@@ -3,7 +3,7 @@ package com.dandelion.use.server.common.properties;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
 /**
- * TODO token
+ * token
  *
  * @author L
  * @version 1.0

@@ -1,7 +1,7 @@
 package com.dandelion.use.server.common.constant;
 
 /**
- * TODO Redis 使用常量
+ * Redis 使用常量
  *
  * @author L
  * @version 1.0

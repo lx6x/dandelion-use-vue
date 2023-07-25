@@ -1,7 +1,7 @@
 package com.dandelion.use.server.common.core;
 
 /**
- * TODO 通用结果返回
+ * 通用结果返回
  *
  * @author L
  * @version 1.0
@@ -50,6 +50,10 @@ public class R<T> {
 
     public static <T> R<T> success(T data) {
         return new R<T>(ResultCode.SUCCESS.getCode(), ResultCode.SUCCESS.getMessage(), data);
+    }
+
+    public static <T> R<T> success() {
+        return new R<T>(ResultCode.SUCCESS.getCode(), ResultCode.SUCCESS.getMessage(), null);
     }
 
     public static <T> R<T> success(String message, T data) {

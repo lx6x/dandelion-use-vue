@@ -3,7 +3,7 @@ package com.dandelion.use.server.common.properties;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
 /**
- * TODO dandelion 系统内置
+ * dandelion 系统内置
  *
  * @author L
  * @version 1.0

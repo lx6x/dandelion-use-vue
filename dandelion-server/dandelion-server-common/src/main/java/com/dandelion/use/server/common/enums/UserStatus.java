@@ -1,7 +1,7 @@
 package com.dandelion.use.server.common.enums;
 
 /**
- * TODO 用户状态
+ * 用户状态
  *
  * @author L
  * @version 1.0

@@ -6,7 +6,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 /**
- * TODO FilterConfig
+ * FilterConfig
  *
  * @author L
  * @version 1.0

@@ -6,7 +6,7 @@ import io.swagger.annotations.ApiOperation;
 import org.springframework.web.bind.annotation.*;
 
 /**
- * TODO redis 测试controller
+ * redis 测试controller
  *
  * @author L
  * @version 1.0

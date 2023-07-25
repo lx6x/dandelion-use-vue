@@ -12,7 +12,7 @@ import org.yaml.snakeyaml.constructor.DuplicateKeyException;
 import javax.servlet.http.HttpServletRequest;
 
 /**
- * TODO 全局异常处理捕获
+ * 全局异常处理捕获
  *
  * @author L
  * @version 1.0

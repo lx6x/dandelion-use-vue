@@ -14,7 +14,7 @@ import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
 
 /**
- * TODO 使用装饰模式解决中文乱码问题
+ * 使用装饰模式解决中文乱码问题
  *
  * @author L
  * @version 1.0

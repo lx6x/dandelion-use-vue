@@ -55,10 +55,10 @@
         </dependency>
 
         <!-- spring security 安全认证 -->
-        <dependency>
+        <!--<dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-security</artifactId>
-        </dependency>
+        </dependency>-->
 
         <dependency>
             <groupId>com.alibaba.fastjson2</groupId>
@@ -76,11 +76,11 @@
         </dependency>
 
         <!--JWT(Json Web Token)登录支持-->
-        <dependency>
+        <!--<dependency>
             <groupId>io.jsonwebtoken</groupId>
             <artifactId>jjwt</artifactId>
             <version>0.9.1</version>
-        </dependency>
+        </dependency>-->
 
     </dependencies>
 

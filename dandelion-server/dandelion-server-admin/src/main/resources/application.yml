@@ -3,8 +3,8 @@ server:
 spring:
   datasource:
     username: root
-    password: root
-    url: jdbc:mysql://192.168.80.100:3306/dandelion_use?useUnicode=true&characterEncoding=utf-8&useSSL=true&serverTimezone=Asia/Shanghai
+    password: 5n2Qwvz0hXftUYwB
+    url: jdbc:mysql://43.143.224.83:10013/dandelion?useUnicode=true&characterEncoding=utf-8&useSSL=true&serverTimezone=Asia/Shanghai
     driver-class-name: com.mysql.cj.jdbc.Driver
   # redis 连接参数信息
   redis:
@@ -13,8 +13,8 @@ spring:
         max-active: 100
         max-idle: 100
         max-wait: 1000
-    host: 192.168.80.100
-    port: 6379
+    host: 43.143.224.83
+    port: 10014
 # swagger
 swagger:
   description: dandelion-learning使用结合

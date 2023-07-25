@@ -1,7 +1,7 @@
 package com.dandelion.use.server.common.core;
 
 /**
- * TODO 状态接口
+ * 状态接口
  *
  * @author L
  * @version 1.0

@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 import javax.annotation.Resource;
 
 /**
- * TODO 系统登录验证
+ * 系统登录验证
  *
  * @author L
  * @version 1.0
@@ -35,7 +35,7 @@ public class SystemLoginController {
      * @author L
      */
     @RepeatSubmit
-    @ApiOperation(value = "登录方法", notes = "用户登录方法")
+    @ApiOperation(value = "登录", notes = "用户登录")
     @PostMapping("/login")
     public R<String> login(@RequestBody LoginInfo loginInfo) {
         return R.success(systemLoginService.login(loginInfo.getUserName(),loginInfo.getPassword()));

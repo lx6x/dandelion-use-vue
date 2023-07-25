@@ -3,7 +3,7 @@ package com.dandelion.use.server.common.properties;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
 /**
- * TODO 自定义 Swagger 参数信息
+ * 自定义 Swagger 参数信息
  *
  * @author L
  * @version 1.0

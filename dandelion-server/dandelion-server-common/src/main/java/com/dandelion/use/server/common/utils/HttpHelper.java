@@ -13,7 +13,7 @@ import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
 
 /**
- * TODO 通用http工具封装
+ * 通用http工具封装
  *
  * @author L
  * @version 1.0

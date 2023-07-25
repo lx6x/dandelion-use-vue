@@ -9,7 +9,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import javax.annotation.Resource;
 
 /**
- * TODO 通用配置
+ * 通用配置
  *
  * @author L
  * @version 1.0

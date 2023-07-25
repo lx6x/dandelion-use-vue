@@ -1,7 +1,7 @@
 package com.dandelion.use.server.common.constant;
 
 /**
- * TODO 通用常量
+ * 通用常量
  *
  * @author L
  * @version 1.0

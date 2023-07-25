@@ -4,7 +4,7 @@ import com.dandelion.use.server.common.core.IResultCode;
 import com.dandelion.use.server.common.core.ResultCode;
 
 /**
- * TODO 全局异常返回
+ * 全局异常返回
  *
  * @author L
  * @version 1.0

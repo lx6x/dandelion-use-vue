@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.lang.reflect.Method;
 
 /**
- * TODO 防止重复提交拦截器
+ * 防止重复提交拦截器
  *
  * @author L
  * @version 1.0

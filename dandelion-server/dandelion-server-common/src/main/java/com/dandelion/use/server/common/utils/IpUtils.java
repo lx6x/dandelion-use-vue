@@ -5,7 +5,7 @@ import org.apache.commons.lang3.StringUtils;
 import javax.servlet.http.HttpServletRequest;
 
 /**
- * TODO ip工具类
+ * ip工具类
  *
  * @author L
  * @version 1.0

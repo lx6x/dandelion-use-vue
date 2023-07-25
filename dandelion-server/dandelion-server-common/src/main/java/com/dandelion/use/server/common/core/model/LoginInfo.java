@@ -4,7 +4,7 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 
 /**
- * TODO 登录信息
+ * 登录信息
  *
  * @author L
  * @version 1.0
