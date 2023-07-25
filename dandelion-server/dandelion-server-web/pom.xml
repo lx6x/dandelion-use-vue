@@ -27,14 +27,21 @@
             <optional>true</optional> &lt;!&ndash; 表示依赖不会传递 &ndash;&gt;
         </dependency>-->
 
+
         <dependency>
-            <groupId>com.dandelion.use.server.common</groupId>
-            <artifactId>dandelion-server-common</artifactId>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+
+        <!-- SpringBoot 拦截器 -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-aop</artifactId>
         </dependency>
 
         <dependency>
-            <groupId>com.dandelion.use.server.framework</groupId>
-            <artifactId>dandelion-server-framework</artifactId>
+            <groupId>com.dandelion.use.server.common</groupId>
+            <artifactId>dandelion-server-common</artifactId>
         </dependency>
 
         <!--  mysql 驱动 -->

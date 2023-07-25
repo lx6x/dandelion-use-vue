@@ -5,6 +5,8 @@ import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.web.bind.annotation.*;
 
+import javax.annotation.Resource;
+
 /**
  * redis
  *
@@ -17,11 +19,9 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/redis")
 public class RedisController {
 
-    private final RedisUtils redisUtils;
+    @Resource
+    private RedisUtils redisUtils;
 
-    public RedisController(RedisUtils redisUtils) {
-        this.redisUtils = redisUtils;
-    }
 
     /**
      * redis get 测试

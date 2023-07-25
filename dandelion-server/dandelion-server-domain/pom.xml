@@ -9,31 +9,25 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.dandelion.use.server.framework</groupId>
-    <artifactId>dandelion-server-framework</artifactId>
+    <groupId>com.dandelion.use.server.domain</groupId>
+    <artifactId>dandelion-server-domain</artifactId>
 
     <properties>
         <maven.compiler.source>8</maven.compiler.source>
         <maven.compiler.target>8</maven.compiler.target>
     </properties>
-
+    
     <dependencies>
-
         <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-web</artifactId>
-        </dependency>
-
-        <!-- SpringBoot 拦截器 -->
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-aop</artifactId>
+            <groupId>com.dandelion.use.server.common</groupId>
+            <artifactId>dandelion-server-common</artifactId>
         </dependency>
 
         <dependency>
-            <groupId>com.dandelion.use.server.system</groupId>
-            <artifactId>dandelion-server-system</artifactId>
+            <groupId>com.baomidou</groupId>
+            <artifactId>mybatis-plus-boot-starter</artifactId>
         </dependency>
+
     </dependencies>
 
 </project>

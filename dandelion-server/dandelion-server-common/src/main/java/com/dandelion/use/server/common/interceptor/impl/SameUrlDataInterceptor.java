@@ -1,16 +1,15 @@
-package com.dandelion.use.server.framework.interceptor.impl;
+package com.dandelion.use.server.common.interceptor.impl;
 
 import com.alibaba.fastjson2.JSON;
 import com.dandelion.use.server.common.annotation.RepeatSubmit;
 import com.dandelion.use.server.common.constant.RedisConstant;
 import com.dandelion.use.server.common.filter.RepeatedlyRequestWrapper;
+import com.dandelion.use.server.common.interceptor.RepeatSubmitInterceptor;
 import com.dandelion.use.server.common.properties.TokenCustomProperties;
 import com.dandelion.use.server.common.utils.HttpHelper;
 import com.dandelion.use.server.common.utils.RedisUtils;
-import com.dandelion.use.server.framework.interceptor.RepeatSubmitInterceptor;
 import org.apache.commons.lang3.ObjectUtils;
 import org.apache.commons.lang3.StringUtils;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.stereotype.Component;
 

@@ -1,4 +1,4 @@
-package com.dandelion.use.server.framework.config;
+package com.dandelion.use.server.common.config;
 
 import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.context.annotation.Bean;

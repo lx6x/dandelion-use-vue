@@ -11,8 +11,7 @@
     <modules>
         <module>dandelion-server-web</module>
         <module>dandelion-server-common</module>
-        <module>dandelion-server-framework</module>
-        <module>dandelion-server-system</module>
+        <module>dandelion-server-domain</module>
     </modules>
 
     <properties>
@@ -75,14 +74,8 @@
             </dependency>
 
             <dependency>
-                <groupId>com.dandelion.use.server.framework</groupId>
-                <artifactId>dandelion-server-framework</artifactId>
-                <version>${dandelion.version}</version>
-            </dependency>
-
-            <dependency>
-                <groupId>com.dandelion.use.server.system</groupId>
-                <artifactId>dandelion-server-system</artifactId>
+                <groupId>com.dandelion.use.server.domain</groupId>
+                <artifactId>dandelion-server-domain</artifactId>
                 <version>${dandelion.version}</version>
             </dependency>
 

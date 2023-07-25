@@ -5,31 +5,24 @@
 ```
 dandelion-use
 ├── dandelion-client                         页面
-|   ├── dandelion-domino-ui                  domino ui 应用
-|   |   ├── dandelion-domino-ui-client       实际 ui 页面
-|   |   ├── dandelion-domino-ui-server       与 dandelion-server 交互使用
-|   └── └── dandelion-domino-ui-shared       client 与 server 交互使用，如：实体类映射
-├── dandelion-server                         服务 (仿照 ruoyi )
-|   |   ├── dandelion-server-admin           实际对外抛出服务
+|  
+├── dandelion-server                         服务
+|   |   ├── dandelion-server-web             实际对外抛出服务
 |   |   ├── dandelion-server-common          公共模块
-| | |   ├── dandelion-server-framework       核心模块
-└── └── └── dandelion-server-system          系统模块
+└── └── └── dandelion-server-domain          系统模块
 ```
 
 ## 技术选型
 
-| 框架             | 版本                | 说明               | 
-|----------------|-------------------|------------------|
-| Domino-UI      | 1.0-rc.4-SNAPSHOT | 前端界面             |
-| Gwt            | 2.8.2             | Google Web Tool  |
-| Springboot     | 2.5.14            | 容器+MVC框架         |
-| Druid          | 1.2.8             | 阿里数据库连接池         |
-| Mybatis        | 2.2.2             | ORM框架            |
-| Swagger-UI     | 3.0.0             | 文档生产工具           |
-| Redis          | boot              | 分布式缓存            |
-| SpringSecurity | boot              | 认证和授权框架          |
-| JWT            | 0.9.1             | 鉴权               |
+| 框架             | 版本 | 说明       | 
+|----------------|----|----------|
+| Springboot     |    | 容器+MVC框架 |
+| Druid          |    | 阿里数据库连接池 |
+| Mybatis-Plus   |    | ORM框架    |
+| Knife4j        |    | 文档生产工具   |
+| Redis          |    | 分布式缓存    |
 
 ## DominoKit
+
 [domino-ui Github 👈](https://github.com/DominoKit/domino-ui)
 

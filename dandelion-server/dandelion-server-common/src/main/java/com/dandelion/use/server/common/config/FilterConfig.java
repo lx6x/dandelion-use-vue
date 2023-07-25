@@ -1,4 +1,4 @@
-package com.dandelion.use.server.framework.config;
+package com.dandelion.use.server.common.config;
 
 import com.dandelion.use.server.common.filter.RepeatableFilter;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;

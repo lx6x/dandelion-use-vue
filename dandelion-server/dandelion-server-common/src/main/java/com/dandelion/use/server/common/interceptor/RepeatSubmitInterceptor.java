@@ -1,4 +1,4 @@
-package com.dandelion.use.server.framework.interceptor;
+package com.dandelion.use.server.common.interceptor;
 
 import com.alibaba.fastjson2.JSON;
 import com.dandelion.use.server.common.annotation.RepeatSubmit;

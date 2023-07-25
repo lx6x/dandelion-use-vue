@@ -1,6 +1,5 @@
 package com.dandelion.use.server.web;
 
-import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
@@ -11,8 +10,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * @version 1.0
  * @date 2022/06/14 16:31
  */
-@MapperScan("com.dandelion.use.server.system")
-@SpringBootApplication(scanBasePackages = {"com.dandelion.use.server"})
+@SpringBootApplication
 public class AdminApplication {
 
     public static void main(String[] args) {
