@@ -2,13 +2,10 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-    <parent>
-        <artifactId>dandelion-use</artifactId>
-        <groupId>com.dandelion.use</groupId>
-        <version>1.0</version>
-    </parent>
-    <modelVersion>4.0.0</modelVersion>
 
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>com.dandelion.use</groupId>
+    <version>1.0</version>
     <artifactId>dandelion-server</artifactId>
     <packaging>pom</packaging>
     <modules>
@@ -137,29 +134,21 @@
         </plugins>
     </build>
 
-    <repositories>
+    <!-- 配置 nexus -->
+    <distributionManagement>
         <repository>
-            <id>public</id>
-            <name>aliyun nexus</name>
-            <url>https://maven.aliyun.com/repository/public</url>
-            <releases>
-                <enabled>true</enabled>
-            </releases>
+            <!-- 这里的id邀约 settings.xml 配置的id相同 -->
+            <id>admin</id>
+            <!-- 配置发布版的名称与路径 -->
+            <name>43 远程私有仓库</name>
+            <url>http://43.143.224.83:10012/repository/maven-releases/</url>
         </repository>
-    </repositories>
-
-    <pluginRepositories>
-        <pluginRepository>
-            <id>public</id>
-            <name>aliyun nexus</name>
-            <url>https://maven.aliyun.com/repository/public</url>
-            <releases>
-                <enabled>true</enabled>
-            </releases>
-            <snapshots>
-                <enabled>false</enabled>
-            </snapshots>
-        </pluginRepository>
-    </pluginRepositories>
+        <!-- 发布 releses/snapshots 取决于  version 是否带有 【 -SNAPSHOT 】-->
+        <snapshotRepository>
+            <id>admin</id>
+            <name>43 远程私有仓库</name>
+            <url>http://43.143.224.83:10012/repository/maven-snapshots/</url>
+        </snapshotRepository>
+    </distributionManagement>
 
 </project>
