@@ -1,7 +1,7 @@
 package com.dandelion.use.server.common.core.model;
 
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
+
+import io.swagger.v3.oas.annotations.media.Schema;
 
 /**
  * 登录信息
@@ -10,23 +10,23 @@ import io.swagger.annotations.ApiModelProperty;
  * @version 1.0
  * @date 2022/06/21 10:28
  */
-@ApiModel(description = "登录信息")
+@Schema(description = "登录信息")
 public class LoginInfo {
 
     /**
      * 用户信息
      */
-    @ApiModelProperty(value = "用户信息",name = "userName",required = true)
+    @Schema(name = "用户信息")
     private String userName;
     /**
      * 密码
      */
-    @ApiModelProperty(value = "密码",name = "password",required = true)
+    @Schema(name = "密码")
     private String password;
     /**
      * 验证码
      */
-    @ApiModelProperty(value = "验证码",name = "code",required = false)
+    @Schema(name = "验证码")
     private String code;
     /**
      * 唯一标识

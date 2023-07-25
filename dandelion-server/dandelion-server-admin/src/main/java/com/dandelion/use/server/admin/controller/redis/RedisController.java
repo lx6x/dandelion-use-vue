@@ -1,18 +1,18 @@
 package com.dandelion.use.server.admin.controller.redis;
 
 import com.dandelion.use.server.common.utils.RedisUtils;
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.web.bind.annotation.*;
 
 /**
- * redis 测试controller
+ * redis
  *
  * @author L
  * @version 1.0
  * @date 2022-11-07 20:35
  */
-@Api(value = "Redis 测试controller", tags = "Redis 测试controller", protocols = "http")
+@Tag(name = "Redis")
 @RestController
 @RequestMapping("/redis")
 public class RedisController {
@@ -30,7 +30,7 @@ public class RedisController {
      * @return value
      * @author L
      */
-    @ApiOperation(value = "redis get 测试", notes = "Redis")
+    @Operation(description = "redis get 测试")
     @GetMapping("/get/{s}")
     public String get(@PathVariable("s") String s) {
         return redisUtils.get(s).toString();
@@ -43,7 +43,7 @@ public class RedisController {
      * @return true-成功/false-失败
      * @author L
      */
-    @ApiOperation(value = "redis add 测试", notes = "Redis")
+    @Operation(description = "redis add 测试")
     @PostMapping("/add/{s}")
     public Boolean add(@PathVariable("s") String s) {
         return redisUtils.set(s, s);

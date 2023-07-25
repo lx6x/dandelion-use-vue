@@ -15,25 +15,27 @@ spring:
         max-wait: 1000
     host: 43.143.224.83
     port: 10014
-# swagger
-swagger:
-  description: dandelion-learning使用结合
-  title: dandelion api文档接口
-  enabled: true
-# 系统自定义
-dandelion:
-  version: 1.0
-  name: L
-  url: https://github.com/l-001
-  email: https://github.com/l-001
+# springdoc-openapi项目配置
+springdoc:
+  swagger-ui:
+    path: /swagger-ui.html
+    tags-sorter: alpha
+    operations-sorter: alpha
+  api-docs:
+    path: /v3/api-docs
+  group-configs:
+    - group: 'default'
+      paths-to-match: '/**'
+#      packages-to-scan: com.dandelion.user.server
+# knife4j的增强配置，不需要增强可以不配
+knife4j:
+  enable: true
+  setting:
+    language: zh_cn
 token:
   header: Authorization
   secret: dandelion
   # 过期时间 ms
   expireTime: 600000
-mybatis:
-  configuration:
-    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
-  mapper-locations:
-    - classpath:mapper/*.xml
+
 

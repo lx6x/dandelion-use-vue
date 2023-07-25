@@ -11,8 +11,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * @version 1.0
  * @date 2022/06/14 16:31
  */
+@MapperScan("com.dandelion.use.server.system")
 @SpringBootApplication(scanBasePackages = {"com.dandelion.use.server"})
-@MapperScan(basePackages = {"com.dandelion.use.server.system.mapper"})
 public class AdminApplication {
 
     public static void main(String[] args) {
