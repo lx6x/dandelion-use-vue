@@ -1,11 +1,11 @@
-package com.dandelion.use.server.system.domain;
+package com.dandelion.use.server.domain.domain;
 
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import io.swagger.v3.oas.annotations.media.Schema;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
+
 
 import java.io.Serializable;
 
@@ -17,8 +17,7 @@ import java.io.Serializable;
  * @author lx6x
  * @since 2023/07/25
  */
-@Getter
-@Setter
+@Data
 @TableName("sys_menus")
 @Schema(name = "SysMenus", description = "菜单")
 public class SysMenus implements Serializable {

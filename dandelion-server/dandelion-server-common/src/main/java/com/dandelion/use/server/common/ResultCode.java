@@ -1,4 +1,4 @@
-package com.dandelion.use.server.common.core;
+package com.dandelion.use.server.common;
 
 /**
  * api状态码返回

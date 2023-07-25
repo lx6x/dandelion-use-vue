@@ -1,7 +1,7 @@
 package com.dandelion.use.server.common.exception;
 
-import com.dandelion.use.server.common.core.R;
-import com.dandelion.use.server.common.core.ResultCode;
+import com.dandelion.use.server.common.R;
+import com.dandelion.use.server.common.ResultCode;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.ControllerAdvice;

@@ -2,7 +2,7 @@ package com.dandelion.use.server.common.interceptor;
 
 import com.alibaba.fastjson2.JSON;
 import com.dandelion.use.server.common.annotation.RepeatSubmit;
-import com.dandelion.use.server.common.core.R;
+import com.dandelion.use.server.common.R;
 import com.dandelion.use.server.common.utils.ServletUtils;
 import org.springframework.stereotype.Component;
 import org.springframework.web.method.HandlerMethod;

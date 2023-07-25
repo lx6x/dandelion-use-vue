@@ -1,7 +1,7 @@
 package com.dandelion.use.server.common.exception;
 
-import com.dandelion.use.server.common.core.IResultCode;
-import com.dandelion.use.server.common.core.ResultCode;
+import com.dandelion.use.server.common.IResultCode;
+import com.dandelion.use.server.common.ResultCode;
 
 /**
  * 全局异常返回

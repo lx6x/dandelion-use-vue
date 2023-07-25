@@ -1,4 +1,4 @@
-package com.dandelion.use.server.common.core;
+package com.dandelion.use.server.common;
 
 /**
  * 通用结果返回

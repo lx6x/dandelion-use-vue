@@ -20,14 +20,6 @@
 
     <dependencies>
 
-        <!-- spring-boot-devtools 热部署 -->
-        <!--<dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-devtools</artifactId>
-            <optional>true</optional> &lt;!&ndash; 表示依赖不会传递 &ndash;&gt;
-        </dependency>-->
-
-
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
@@ -40,8 +32,19 @@
         </dependency>
 
         <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
             <groupId>com.dandelion.use.server.common</groupId>
             <artifactId>dandelion-server-common</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.dandelion.use.server.domain</groupId>
+            <artifactId>dandelion-server-domain</artifactId>
         </dependency>
 
         <!--  mysql 驱动 -->
@@ -50,17 +53,18 @@
             <artifactId>mysql-connector-java</artifactId>
         </dependency>
 
+
         <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-test</artifactId>
-            <scope>test</scope>
+            <groupId>org.mapstruct</groupId>
+            <artifactId>mapstruct</artifactId>
         </dependency>
         <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <version>4.13.1</version>
-            <scope>test</scope>
+            <groupId>org.mapstruct</groupId>
+            <artifactId>mapstruct-processor</artifactId>
         </dependency>
+
+
+
 
     </dependencies>
 

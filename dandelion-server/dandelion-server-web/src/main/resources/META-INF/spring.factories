@@ -1,7 +1,3 @@
 org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
-  com.dandelion.use.server.common.config.WebMvcConfig,\
   com.dandelion.use.server.common.config.RedisConfig,\
-  com.dandelion.use.server.common.config.FilterConfig,\
-  com.dandelion.use.server.common.utils.RedisUtils,\
-  com.dandelion.use.server.common.interceptor.impl.SameUrlDataInterceptor,\
-  com.dandelion.use.server.web.aspect.WebLogAspectConfig
+  com.dandelion.use.server.common.utils.RedisUtils

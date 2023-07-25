@@ -1,9 +1,9 @@
-package com.dandelion.use.server.system.service.impl;
+package com.dandelion.use.server.domain.service.impl;
 
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.dandelion.use.server.system.domain.SysMenus;
-import com.dandelion.use.server.system.mapper.SysMenusMapper;
-import com.dandelion.use.server.system.service.ISysMenusService;
+import com.dandelion.use.server.domain.domain.SysMenus;
+import com.dandelion.use.server.domain.mapper.SysMenusMapper;
+import com.dandelion.use.server.domain.service.ISysMenusService;
 import org.springframework.stereotype.Service;
 
 /**
