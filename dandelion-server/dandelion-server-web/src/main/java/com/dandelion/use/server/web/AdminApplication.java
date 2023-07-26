@@ -11,11 +11,16 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * @version 1.0
  * @date 2022/06/14 16:31
  */
-@MapperScan("com.dandelion.use.server.domain")
-@SpringBootApplication
+@MapperScan("com.dandelion.use.server.domain.mapper")
+@SpringBootApplication(scanBasePackages = "com.dandelion.use.server")
 public class AdminApplication {
 
     public static void main(String[] args) {
         SpringApplication.run(AdminApplication.class, args);
     }
+
+   /* @Bean
+    public RedisUtils redisUtils(){
+        return new RedisUtils();
+    }*/
 }

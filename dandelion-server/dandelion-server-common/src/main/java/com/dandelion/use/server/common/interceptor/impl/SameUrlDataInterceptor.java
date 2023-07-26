@@ -3,17 +3,15 @@ package com.dandelion.use.server.common.interceptor.impl;
 import com.alibaba.fastjson2.JSON;
 import com.dandelion.use.server.common.annotation.RepeatSubmit;
 import com.dandelion.use.server.common.constant.RedisConstant;
-import com.dandelion.use.server.common.filter.RepeatedlyRequestWrapper;
 import com.dandelion.use.server.common.interceptor.RepeatSubmitInterceptor;
 import com.dandelion.use.server.common.properties.TokenCustomProperties;
-import com.dandelion.use.server.common.utils.HttpHelper;
 import com.dandelion.use.server.common.utils.RedisUtils;
+import jakarta.servlet.http.HttpServletRequest;
 import org.apache.commons.lang3.ObjectUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.stereotype.Component;
 
-import javax.servlet.http.HttpServletRequest;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
@@ -45,10 +43,7 @@ public class SameUrlDataInterceptor extends RepeatSubmitInterceptor {
     @Override
     public boolean isRepeatSubmit(HttpServletRequest request, RepeatSubmit annotation) {
         String nowParams = "";
-        if (request instanceof RepeatedlyRequestWrapper) {
-            RepeatedlyRequestWrapper repeatedlyRequest = (RepeatedlyRequestWrapper) request;
-            nowParams = HttpHelper.getBodyString(repeatedlyRequest);
-        }
+
 
         // body参数为空，获取Parameter的数据
         if (StringUtils.isEmpty(nowParams)) {
@@ -56,8 +51,8 @@ public class SameUrlDataInterceptor extends RepeatSubmitInterceptor {
         }
 
         Map<String, Object> nowMap = new HashMap<>(16);
-        nowMap.put(REPEAT_PARAMS,nowParams);
-        nowMap.put(REPEAT_TIME,System.currentTimeMillis());
+        nowMap.put(REPEAT_PARAMS, nowParams);
+        nowMap.put(REPEAT_TIME, System.currentTimeMillis());
 
         // 获取请求头中数据做为key
         String submitKey = StringUtils.trimToEmpty(request.getHeader(tokenCustomProperties.getHeader()));
@@ -79,7 +74,7 @@ public class SameUrlDataInterceptor extends RepeatSubmitInterceptor {
         }
         Map<String, Object> cacheMap = new HashMap<String, Object>();
         cacheMap.put(url, nowMap);
-        redisUtils.set(repeatKey,cacheMap,annotation.interval(), TimeUnit.MILLISECONDS);
+        redisUtils.set(repeatKey, cacheMap, annotation.interval(), TimeUnit.MILLISECONDS);
         return false;
     }
 

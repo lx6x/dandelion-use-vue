@@ -5,11 +5,11 @@ import com.dandelion.use.server.domain.domain.SysMenus;
 import com.dandelion.use.server.domain.service.ISysMenusService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.annotation.Resource;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import javax.annotation.Resource;
 import java.util.List;
 
 /**
@@ -31,7 +31,7 @@ public class SysMenusController {
     @Operation(description = "获取菜单列表")
     @GetMapping("/getList")
     public R<List<SysMenus>> getList() {
-        return R.success();
+        return R.success(sysMenusService.list());
     }
 
 }

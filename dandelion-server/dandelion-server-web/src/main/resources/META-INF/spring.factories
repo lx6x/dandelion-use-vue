@@ -1,3 +1,0 @@
-org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
-  com.dandelion.use.server.common.config.RedisConfig,\
-  com.dandelion.use.server.common.utils.RedisUtils

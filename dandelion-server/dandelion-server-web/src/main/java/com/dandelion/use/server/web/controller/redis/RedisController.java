@@ -3,9 +3,9 @@ package com.dandelion.use.server.web.controller.redis;
 import com.dandelion.use.server.common.utils.RedisUtils;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.annotation.Resource;
 import org.springframework.web.bind.annotation.*;
 
-import javax.annotation.Resource;
 
 /**
  * redis

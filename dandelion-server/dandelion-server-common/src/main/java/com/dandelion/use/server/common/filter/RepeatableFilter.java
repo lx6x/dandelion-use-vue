@@ -1,10 +1,10 @@
 package com.dandelion.use.server.common.filter;
 
+import jakarta.servlet.*;
+import jakarta.servlet.http.HttpServletRequest;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.http.MediaType;
 
-import javax.servlet.*;
-import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
 
 /**
@@ -24,7 +24,7 @@ public class RepeatableFilter implements Filter {
         ServletRequest requestWrapper = null;
         if (request instanceof HttpServletRequest &&
                 StringUtils.startsWithIgnoreCase(request.getContentType(), MediaType.APPLICATION_JSON_VALUE)) {
-            requestWrapper = new RepeatedlyRequestWrapper((HttpServletRequest) request, response);
+            requestWrapper = new ServletRequestWrapper(request);
         }
         if (null == requestWrapper) {
             chain.doFilter(request, response);

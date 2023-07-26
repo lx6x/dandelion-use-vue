@@ -2,6 +2,7 @@ package com.dandelion.use.server.common.exception;
 
 import com.dandelion.use.server.common.R;
 import com.dandelion.use.server.common.ResultCode;
+import jakarta.servlet.http.HttpServletRequest;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -9,7 +10,6 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.yaml.snakeyaml.constructor.DuplicateKeyException;
 
-import javax.servlet.http.HttpServletRequest;
 
 /**
  * 全局异常处理捕获
