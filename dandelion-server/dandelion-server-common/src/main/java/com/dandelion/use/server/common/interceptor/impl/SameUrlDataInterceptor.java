@@ -5,7 +5,7 @@ import com.dandelion.use.server.common.annotation.RepeatSubmit;
 import com.dandelion.use.server.common.constant.RedisConstant;
 import com.dandelion.use.server.common.interceptor.RepeatSubmitInterceptor;
 import com.dandelion.use.server.common.properties.TokenCustomProperties;
-import com.dandelion.use.server.common.utils.RedisUtils;
+import com.dandelion.use.server.common.utils.RedisUtil;
 import jakarta.servlet.http.HttpServletRequest;
 import org.apache.commons.lang3.ObjectUtils;
 import org.apache.commons.lang3.StringUtils;
@@ -31,12 +31,12 @@ public class SameUrlDataInterceptor extends RepeatSubmitInterceptor {
 
     public final String REPEAT_TIME = "repeatTime";
 
-    private final RedisUtils redisUtils;
+    private final RedisUtil redisUtil;
 
     private final TokenCustomProperties tokenCustomProperties;
 
-    public SameUrlDataInterceptor(RedisUtils redisUtils, TokenCustomProperties tokenCustomProperties) {
-        this.redisUtils = redisUtils;
+    public SameUrlDataInterceptor(RedisUtil redisUtil, TokenCustomProperties tokenCustomProperties) {
+        this.redisUtil = redisUtil;
         this.tokenCustomProperties = tokenCustomProperties;
     }
 
@@ -62,7 +62,7 @@ public class SameUrlDataInterceptor extends RepeatSubmitInterceptor {
 
         // 实际 redis 获取key
         String repeatKey = RedisConstant.REPEAT_SUBMIT_KEY + url + submitKey;
-        Object sessionObj = redisUtils.get(repeatKey);
+        Object sessionObj = redisUtil.get(repeatKey);
         if (!ObjectUtils.isEmpty(sessionObj)) {
             Map<String, Object> sessionMap = (Map<String, Object>) sessionObj;
             if (sessionMap.containsKey(url)) {
@@ -74,7 +74,7 @@ public class SameUrlDataInterceptor extends RepeatSubmitInterceptor {
         }
         Map<String, Object> cacheMap = new HashMap<String, Object>();
         cacheMap.put(url, nowMap);
-        redisUtils.set(repeatKey, cacheMap, annotation.interval(), TimeUnit.MILLISECONDS);
+        redisUtil.set(repeatKey, cacheMap, annotation.interval(), TimeUnit.MILLISECONDS);
         return false;
     }
 

@@ -5,7 +5,7 @@ import cn.hutool.core.util.StrUtil;
 import cn.hutool.core.util.URLUtil;
 import cn.hutool.json.JSONUtil;
 import com.alibaba.fastjson2.JSON;
-import com.dandelion.use.server.common.utils.IpUtils;
+import com.dandelion.use.server.common.utils.IpUtil;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.Signature;
@@ -59,7 +59,7 @@ public class WebLogAspectConfig {
         ServletRequestAttributes attributes = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
         assert attributes != null;
         HttpServletRequest request = attributes.getRequest();
-        String ip = IpUtils.getIpAdder(request);
+        String ip = IpUtil.getIpAdder(request);
         // 记录请求信息
         Object result = joinPoint.proceed();
         Signature signature = joinPoint.getSignature();

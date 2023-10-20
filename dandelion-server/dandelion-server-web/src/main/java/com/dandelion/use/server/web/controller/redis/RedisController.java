@@ -1,6 +1,6 @@
 package com.dandelion.use.server.web.controller.redis;
 
-import com.dandelion.use.server.common.utils.RedisUtils;
+import com.dandelion.use.server.common.utils.RedisUtil;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.annotation.Resource;
@@ -20,7 +20,7 @@ import org.springframework.web.bind.annotation.*;
 public class RedisController {
 
     @Resource
-    private RedisUtils redisUtils;
+    private RedisUtil redisUtil;
 
 
     /**
@@ -33,7 +33,7 @@ public class RedisController {
     @Operation(description = "redis get 测试")
     @GetMapping("/get/{s}")
     public String get(@PathVariable("s") String s) {
-        return redisUtils.get(s).toString();
+        return redisUtil.get(s).toString();
     }
 
     /**
@@ -46,6 +46,6 @@ public class RedisController {
     @Operation(description = "redis add 测试")
     @PostMapping("/add/{s}")
     public Boolean add(@PathVariable("s") String s) {
-        return redisUtils.set(s, s);
+        return redisUtil.set(s, s);
     }
 }

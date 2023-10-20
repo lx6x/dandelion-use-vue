@@ -3,8 +3,8 @@ server:
 spring:
   datasource:
     username: root
-    password: 5n2Qwvz0hXftUYwB
-    url: jdbc:mysql://43.143.224.83:10013/dandelion?useUnicode=true&characterEncoding=utf-8&useSSL=true&serverTimezone=Asia/Shanghai
+    password: root
+    url: jdbc:mysql://localhost:3306/dandelion?useUnicode=true&characterEncoding=utf-8&useSSL=true&serverTimezone=Asia/Shanghai
     driver-class-name: com.mysql.cj.jdbc.Driver
   main:
     allow-bean-definition-overriding: true
@@ -16,8 +16,8 @@ spring:
           max-active: 100
           max-idle: 100
           max-wait: 1000
-      host: 43.143.224.83
-      port: 10014
+      host: localhost
+      port: 6379
   liquibase:
     enabled: true
     change-log: classpath:liquibase/master.xml

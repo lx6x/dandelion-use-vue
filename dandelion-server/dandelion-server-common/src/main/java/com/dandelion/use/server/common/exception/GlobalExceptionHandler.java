@@ -1,7 +1,7 @@
 package com.dandelion.use.server.common.exception;
 
-import com.dandelion.use.server.common.R;
-import com.dandelion.use.server.common.ResultCode;
+import com.dandelion.use.server.common.result.R;
+import com.dandelion.use.server.common.result.ResultCode;
 import jakarta.servlet.http.HttpServletRequest;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

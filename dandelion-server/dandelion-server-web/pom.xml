@@ -38,13 +38,8 @@
         </dependency>
 
         <dependency>
-            <groupId>com.dandelion.use.server.common</groupId>
-            <artifactId>dandelion-server-common</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>com.dandelion.use.server.domain</groupId>
-            <artifactId>dandelion-server-domain</artifactId>
+            <groupId>com.dandelion.use.server.service</groupId>
+            <artifactId>dandelion-server-service</artifactId>
         </dependency>
 
         <!--  mysql 驱动 -->

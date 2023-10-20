@@ -1,8 +1,8 @@
 package com.dandelion.use.server.web.controller.system;
 
-import com.dandelion.use.server.common.R;
-import com.dandelion.use.server.domain.domain.SysMenus;
-import com.dandelion.use.server.domain.service.ISysMenusService;
+import com.dandelion.use.server.common.result.R;
+import com.dandelion.use.server.service.sys.domain.SysMenus;
+import com.dandelion.use.server.service.sys.service.ISysMenusService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.annotation.Resource;

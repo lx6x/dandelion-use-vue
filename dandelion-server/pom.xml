@@ -11,7 +11,7 @@
     <modules>
         <module>dandelion-server-web</module>
         <module>dandelion-server-common</module>
-        <module>dandelion-server-domain</module>
+        <module>dandelion-server-service</module>
     </modules>
 
     <properties>
@@ -74,8 +74,8 @@
             </dependency>
 
             <dependency>
-                <groupId>com.dandelion.use.server.domain</groupId>
-                <artifactId>dandelion-server-domain</artifactId>
+                <groupId>com.dandelion.use.server.service</groupId>
+                <artifactId>dandelion-server-service</artifactId>
                 <version>${dandelion.version}</version>
             </dependency>
 

@@ -2,8 +2,8 @@ package com.dandelion.use.server.common.interceptor;
 
 import com.alibaba.fastjson2.JSON;
 import com.dandelion.use.server.common.annotation.RepeatSubmit;
-import com.dandelion.use.server.common.R;
-import com.dandelion.use.server.common.utils.ServletUtils;
+import com.dandelion.use.server.common.result.R;
+import com.dandelion.use.server.common.utils.ServletUtil;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.stereotype.Component;
@@ -30,7 +30,7 @@ public abstract class RepeatSubmitInterceptor implements HandlerInterceptor {
             if (annotation != null) {
                 if (this.isRepeatSubmit(request, annotation)) {
                     R<String> fail = R.fail(annotation.message());
-                    ServletUtils.renderString(response, JSON.toJSONString(fail));
+                    ServletUtil.renderString(response, JSON.toJSONString(fail));
                     return false;
                 }
             }
