@@ -1,4 +1,4 @@
-# dandelion-use
+# dandelion-use-vue
 
 ## 模块结构
 
@@ -22,7 +22,7 @@ dandelion-use
 | Knife4j        |    | 文档生产工具   |
 | Redis          |    | 分布式缓存    |
 
-## DominoKit
+## VUE
 
-[domino-ui Github 👈](https://github.com/DominoKit/domino-ui)
+[VUE3 官文 👈](https://cn.vuejs.org/guide/introduction.html)
 

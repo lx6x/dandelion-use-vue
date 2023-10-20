@@ -18,6 +18,12 @@ spring:
           max-wait: 1000
       host: 43.143.224.83
       port: 10014
+  liquibase:
+    enabled: true
+    change-log: classpath:liquibase/master.xml
+    database-change-log-table: databasechangelog
+    database-change-log-lock-table: databasechangeloglock
+
 # springdoc-openapi项目配置
 springdoc:
   swagger-ui:
