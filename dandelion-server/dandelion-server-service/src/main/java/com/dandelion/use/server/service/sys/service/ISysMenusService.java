@@ -1,7 +1,7 @@
 package com.dandelion.use.server.service.sys.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
-import com.dandelion.use.server.service.sys.domain.SysMenus;
+import com.dandelion.use.server.service.sys.model.SysMenus;
 
 /**
  * <p>

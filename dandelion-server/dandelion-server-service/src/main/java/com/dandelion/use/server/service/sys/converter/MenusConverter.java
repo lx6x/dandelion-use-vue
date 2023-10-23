@@ -1,13 +1,12 @@
-package com.dandelion.use.server.web.converter;
+package com.dandelion.use.server.service.sys.converter;
 
 import org.mapstruct.Mapper;
 
 /**
- * @author liujunfei
+ * @author lx6x
  * @date 2023/7/25
  */
 @Mapper(componentModel = "spring")
 public abstract class MenusConverter {
-
 
 }

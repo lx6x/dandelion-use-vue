@@ -1,0 +1,31 @@
+spring:
+  datasource:
+    username: root
+    password: root
+    url: jdbc:mysql://localhost:3306/dandelion?useUnicode=true&characterEncoding=utf-8&useSSL=true&serverTimezone=Asia/Shanghai
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  main:
+    allow-bean-definition-overriding: true
+  # redis 连接参数信息
+  data:
+    redis:
+      jedis:
+        pool:
+          max-active: 100
+          max-idle: 100
+          max-wait: 1000
+      host: localhost
+      port: 6379
+  liquibase:
+    enabled: true
+    change-log: classpath:liquibase/master.xml
+    database-change-log-table: databasechangelog
+    database-change-log-lock-table: databasechangeloglock
+
+token:
+  header: Authorization
+  secret: dandelion_prod
+  # 过期时间 ms
+  expireTime: 600000
+
+

@@ -2,6 +2,7 @@ package com.dandelion.use.server.web.controller.redis;
 
 import com.dandelion.use.server.common.utils.RedisUtil;
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.annotation.Resource;
 import org.springframework.web.bind.annotation.*;
@@ -10,11 +11,10 @@ import org.springframework.web.bind.annotation.*;
 /**
  * redis
  *
- * @author L
- * @version 1.0
- * @date 2022-11-07 20:35
+ * @author lx6x
+ * @date 2022/11/07
  */
-@Tag(name = "Redis")
+@Tag(name = "redis", description = "redis操作,可供测试使用")
 @RestController
 @RequestMapping("/redis")
 public class RedisController {
@@ -24,28 +24,27 @@ public class RedisController {
 
 
     /**
-     * redis get 测试
+     * get
      *
-     * @param s key
-     * @return value
-     * @author L
+     * @param key key
      */
-    @Operation(description = "redis get 测试")
-    @GetMapping("/get/{s}")
-    public String get(@PathVariable("s") String s) {
-        return redisUtil.get(s).toString();
+    @Operation(summary = "get")
+    @GetMapping("/get/{key}")
+    public String get(@Parameter(description = "key值") @PathVariable("key") String key) {
+        return redisUtil.get(key).toString();
     }
 
     /**
-     * redis add 测试
+     * set
      *
-     * @param s 添加key/value
-     * @return true-成功/false-失败
-     * @author L
+     * @param key 添加key/value
      */
-    @Operation(description = "redis add 测试")
-    @PostMapping("/add/{s}")
-    public Boolean add(@PathVariable("s") String s) {
-        return redisUtil.set(s, s);
+    @Operation(
+            summary = "set",
+            parameters = {@Parameter(name = "key", description = "key值"), @Parameter(name = "value", description = "value值")}
+    )
+    @PostMapping("/set/{key}/{value}")
+    public Boolean set(@PathVariable("key") String key, @PathVariable("value") String value) {
+        return redisUtil.set(key, value);
     }
 }

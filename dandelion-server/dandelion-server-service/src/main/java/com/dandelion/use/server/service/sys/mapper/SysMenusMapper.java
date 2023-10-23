@@ -1,7 +1,7 @@
 package com.dandelion.use.server.service.sys.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import com.dandelion.use.server.service.sys.domain.SysMenus;
+import com.dandelion.use.server.service.sys.model.SysMenus;
 import org.apache.ibatis.annotations.Mapper;
 
 /**
