@@ -11,16 +11,11 @@
 
     <groupId>com.dandelion.use.server.service</groupId>
     <artifactId>dandelion-server-service</artifactId>
-
-    <properties>
-        <maven.compiler.source>8</maven.compiler.source>
-        <maven.compiler.target>8</maven.compiler.target>
-    </properties>
     
     <dependencies>
         <dependency>
-            <groupId>com.dandelion.use.server.common</groupId>
-            <artifactId>dandelion-server-common</artifactId>
+            <groupId>com.dandelion.use.server.core</groupId>
+            <artifactId>dandelion-server-core</artifactId>
         </dependency>
 
         <dependency>
@@ -36,6 +31,7 @@
             <groupId>com.github.xiaoymin</groupId>
             <artifactId>knife4j-openapi3-jakarta-spring-boot-starter</artifactId>
         </dependency>
+
     </dependencies>
 
 </project>

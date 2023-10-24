@@ -1,6 +1,6 @@
 package com.dandelion.use.server.web.controller.redis;
 
-import com.dandelion.use.server.common.utils.RedisUtil;
+import com.dandelion.use.server.core.utils.RedisUtil;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.tags.Tag;

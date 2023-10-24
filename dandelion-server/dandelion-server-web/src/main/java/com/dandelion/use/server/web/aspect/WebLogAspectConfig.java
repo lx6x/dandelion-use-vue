@@ -3,9 +3,10 @@ package com.dandelion.use.server.web.aspect;
 
 import cn.hutool.core.util.StrUtil;
 import cn.hutool.core.util.URLUtil;
-import cn.hutool.json.JSONUtil;
 import com.alibaba.fastjson2.JSON;
-import com.dandelion.use.server.common.utils.IpUtil;
+import com.dandelion.use.server.core.utils.IpUtil;
+import jakarta.servlet.http.HttpServletRequest;
+import org.apache.commons.lang3.StringUtils;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.Signature;
@@ -14,13 +15,11 @@ import org.aspectj.lang.reflect.MethodSignature;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
-import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
-import jakarta.servlet.http.HttpServletRequest;
 import java.lang.reflect.Method;
 import java.lang.reflect.Parameter;
 import java.util.ArrayList;
@@ -69,11 +68,11 @@ public class WebLogAspectConfig {
         long endTime = System.currentTimeMillis();
         String urlStr = request.getRequestURL().toString();
         LOGGER.info("【请求根路径】：{}", StrUtil.removeSuffix(urlStr, URLUtil.url(urlStr).getPath()));
-        LOGGER.info("【IP地址】：{}", ip);
-        LOGGER.info("【请求类型】：{}", request.getMethod());
+//        LOGGER.info("【IP地址】：{}", ip);
+//        LOGGER.info("【请求类型】：{}", request.getMethod());
         LOGGER.info("【请求方法名】：{}", request.getRequestURI());
-        LOGGER.info("【请求参数】：{}", JSONUtil.parse(getParameter(method, joinPoint.getArgs())));
-        LOGGER.info("【请求返回的结果】：{}", JSON.toJSONString(result));
+        LOGGER.info("【请求参数】：{}", JSON.toJSONString(getParameter(method, joinPoint.getArgs())));
+//        LOGGER.info("【请求返回的结果】：{}", JSON.toJSONString(result));
         LOGGER.info("【操作时间】：{}", startTime);
         LOGGER.info("【消耗时间】：{}", (int) (endTime - startTime));
 //        LOGGER.info("【URI】：{}", request.getRequestURL().toString());
@@ -105,7 +104,7 @@ public class WebLogAspectConfig {
                 argList.add(map);
             }
         }
-        if (argList.size() == 0) {
+        if (argList.isEmpty()) {
             return null;
         } else if (argList.size() == 1) {
             return argList.get(0);

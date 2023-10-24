@@ -1,9 +1,10 @@
 server:
-  port: 8081
+  port: 22333
 spring:
   config:
     import:
     - application-data.yml
     - application-doc.yml
+    - application-liquibase.yml
 
 

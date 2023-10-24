@@ -1,6 +1,6 @@
 package com.dandelion.use.server.web.controller.system;
 
-import com.dandelion.use.server.common.result.R;
+import com.dandelion.use.server.core.result.R;
 import com.dandelion.use.server.service.sys.model.SysMenus;
 import com.dandelion.use.server.service.sys.service.ISysMenusService;
 import io.swagger.v3.oas.annotations.Operation;

@@ -8,7 +8,7 @@ dandelion-use
 |  
 ├── dandelion-server                         服务
 |   |   ├── dandelion-server-web             实际对外抛出服务
-|   |   ├── dandelion-server-common          公共模块
+|   |   ├── dandelion-server-core            核心模块
 └── └── └── dandelion-server-service         系统模块
 ```
 

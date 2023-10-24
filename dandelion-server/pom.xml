@@ -10,7 +10,7 @@
     <packaging>pom</packaging>
     <modules>
         <module>dandelion-server-web</module>
-        <module>dandelion-server-common</module>
+        <module>dandelion-server-core</module>
         <module>dandelion-server-service</module>
     </modules>
 
@@ -68,8 +68,8 @@
             </dependency>
 
             <dependency>
-                <groupId>com.dandelion.use.server.common</groupId>
-                <artifactId>dandelion-server-common</artifactId>
+                <groupId>com.dandelion.use.server.core</groupId>
+                <artifactId>dandelion-server-core</artifactId>
                 <version>${dandelion.version}</version>
             </dependency>
 
@@ -148,6 +148,10 @@
                     <source>${java.version}</source>
                     <target>${java.version}</target>
                     <encoding>${project.build.sourceEncoding}</encoding>
+                    <!-- 解决 Using deprecated '-debug' fallback for parameter name resolution. Compile the affected code with '-parameters' instead or avoid its introspection: -->
+                    <compilerArgs>
+                        <arg>-parameters</arg>
+                    </compilerArgs>
                 </configuration>
             </plugin>
         </plugins>

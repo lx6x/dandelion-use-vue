@@ -1,6 +1,6 @@
 package com.dandelion.use.server.service.notify.listener;
 
-import com.dandelion.use.server.common.notify.NotifyMsgEvent;
+import com.dandelion.use.server.core.notify.NotifyMsgEvent;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.ApplicationListener;
