@@ -1,0 +1,16 @@
+version: "3.5"
+# 简易能跑配置
+services:
+  redis:
+    image: redis:latest
+    container_name: redis
+    ports:
+      - "6379:6379"
+  mysql:
+    image: mysql:latest
+    container_name: mysql
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+    ports:
+      - "3306:3306"
+      - "33060:33060"
