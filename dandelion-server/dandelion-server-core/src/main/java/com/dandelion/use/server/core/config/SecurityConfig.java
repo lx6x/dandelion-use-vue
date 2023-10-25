@@ -2,14 +2,11 @@ package com.dandelion.use.server.core.config;
 
 import com.dandelion.use.server.core.filter.JwtAuthenticationTokenFilter;
 import com.dandelion.use.server.core.properties.SecurityProperties;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.web.SecurityFilterChain;
-
-import java.util.List;
 
 import static org.springframework.security.config.Customizer.withDefaults;
 
@@ -22,6 +19,7 @@ import static org.springframework.security.config.Customizer.withDefaults;
 public class SecurityConfig {
 
     private final SecurityProperties securityProperties;
+
     public SecurityConfig(SecurityProperties securityProperties) {
         this.securityProperties = securityProperties;
     }
@@ -38,12 +36,12 @@ public class SecurityConfig {
                 .formLogin(withDefaults())
                 // 对请求验证
                 .authorizeHttpRequests(registry -> {
-
-                    registry
-                            // 添加排除项
-                            .requestMatchers(securityProperties.getExcludes()).permitAll()
-                            // 所有请求都要拦截验证，除了登录成功的除外
-                            .anyRequest().authenticated();
+                    if (securityProperties.isEnabled()) {
+                        // 添加排除项
+                        registry.requestMatchers(securityProperties.getExcludes()).permitAll();
+                    }
+                    // 所有请求都要拦截验证，除了登录成功的除外
+                    registry.anyRequest().authenticated();
                 })
 //                .addFilterBefore();
         ;
