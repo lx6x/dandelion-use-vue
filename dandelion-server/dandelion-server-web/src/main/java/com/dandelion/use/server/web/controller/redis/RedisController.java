@@ -1,5 +1,6 @@
 package com.dandelion.use.server.web.controller.redis;
 
+import com.dandelion.use.server.core.result.R;
 import com.dandelion.use.server.core.utils.RedisUtil;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
@@ -30,8 +31,8 @@ public class RedisController {
      */
     @Operation(summary = "get")
     @GetMapping("/get/{key}")
-    public String get(@Parameter(description = "key值") @PathVariable("key") String key) {
-        return redisUtil.get(key).toString();
+    public R<Object> get(@Parameter(description = "key值") @PathVariable("key") String key) {
+        return R.success(redisUtil.get(key));
     }
 
     /**
@@ -44,7 +45,7 @@ public class RedisController {
             parameters = {@Parameter(name = "key", description = "key值"), @Parameter(name = "value", description = "value值")}
     )
     @PostMapping("/set/{key}/{value}")
-    public Boolean set(@PathVariable("key") String key, @PathVariable("value") String value) {
-        return redisUtil.set(key, value);
+    public R<Boolean> set(@PathVariable("key") String key, @PathVariable("value") String value) {
+        return R.success(redisUtil.set(key, value));
     }
 }

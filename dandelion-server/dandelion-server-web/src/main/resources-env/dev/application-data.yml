@@ -24,5 +24,11 @@ token:
   # 过期时间 ms
   expireTime: 600000
 
+security:
+  excludes:
+    - /redis/get/**
+    - /redis/set
+
+
 
 
