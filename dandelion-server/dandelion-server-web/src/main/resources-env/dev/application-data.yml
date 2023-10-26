@@ -19,10 +19,11 @@ spring:
 
 
 token:
+  prefix: Bearer
   header: Authorization
   secret: dandelion_dev
-  # 过期时间 ms
-  expireTime: 600000
+  # 过期时间 m
+  expireTime: 60
 
 security:
   excludes:
