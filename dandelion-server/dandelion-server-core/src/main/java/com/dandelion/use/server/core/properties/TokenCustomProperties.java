@@ -4,8 +4,6 @@ import lombok.Getter;
 import lombok.Setter;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
-import java.util.List;
-
 /**
  * token
  *
@@ -32,4 +30,9 @@ public class TokenCustomProperties {
      * 过期时间(ms)
      */
     private Integer expireTime;
+
+    /**
+     * token前缀
+     */
+    private String prefix;
 }

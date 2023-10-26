@@ -2,16 +2,16 @@ package com.dandelion.use.server.core.config;
 
 import com.dandelion.use.server.core.filter.JwtAuthenticationTokenFilter;
 import com.dandelion.use.server.core.properties.SecurityProperties;
-import org.springframework.beans.factory.annotation.Value;
+import com.dandelion.use.server.core.properties.TokenCustomProperties;
+import com.dandelion.use.server.core.utils.JwtTokenUtil;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.web.SecurityFilterChain;
-
-import java.util.List;
-
-import static org.springframework.security.config.Customizer.withDefaults;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 /**
  * @author lx6x
@@ -22,8 +22,19 @@ import static org.springframework.security.config.Customizer.withDefaults;
 public class SecurityConfig {
 
     private final SecurityProperties securityProperties;
-    public SecurityConfig(SecurityProperties securityProperties) {
+
+    private final TokenCustomProperties tokenCustomProperties;
+
+    private final JwtTokenUtil jwtTokenUtil;
+
+    private final UserDetailsService userDetailsService;
+
+    public SecurityConfig(SecurityProperties securityProperties, TokenCustomProperties tokenCustomProperties,
+                          JwtTokenUtil jwtTokenUtil, UserDetailsService userDetailsService) {
         this.securityProperties = securityProperties;
+        this.tokenCustomProperties = tokenCustomProperties;
+        this.jwtTokenUtil = jwtTokenUtil;
+        this.userDetailsService = userDetailsService;
     }
 
 
@@ -35,23 +46,24 @@ public class SecurityConfig {
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
                 // 默认登录表单验证
-                .formLogin(withDefaults())
+//                .formLogin(withDefaults())
+                // 使用 Jwt
+                .csrf(AbstractHttpConfigurer::disable)
                 // 对请求验证
                 .authorizeHttpRequests(registry -> {
-
                     registry
                             // 添加排除项
                             .requestMatchers(securityProperties.getExcludes()).permitAll()
                             // 所有请求都要拦截验证，除了登录成功的除外
                             .anyRequest().authenticated();
                 })
-//                .addFilterBefore();
+                .addFilterBefore(authFilter(), UsernamePasswordAuthenticationFilter.class);
         ;
         return http.build();
     }
 
     @Bean
     public JwtAuthenticationTokenFilter authFilter() throws Exception {
-        return new JwtAuthenticationTokenFilter();
+        return new JwtAuthenticationTokenFilter(tokenCustomProperties, jwtTokenUtil, userDetailsService);
     }
 }
