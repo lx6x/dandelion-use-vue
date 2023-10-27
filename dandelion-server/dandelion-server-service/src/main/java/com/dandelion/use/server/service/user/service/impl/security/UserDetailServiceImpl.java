@@ -21,10 +21,7 @@ public class UserDetailServiceImpl implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         SysUser sysUser = sysUserDao.getByUserName(username);
-
         return new UserDetailImpl(sysUser);
     }
-
-
 
 }

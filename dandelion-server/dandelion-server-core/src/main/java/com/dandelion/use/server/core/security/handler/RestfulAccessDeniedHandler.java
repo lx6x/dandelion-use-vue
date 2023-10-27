@@ -27,5 +27,4 @@ public class RestfulAccessDeniedHandler implements AccessDeniedHandler {
         response.getWriter().println(JSONUtil.parse(R.fail(e.getMessage())));
         response.getWriter().flush();
     }
-
 }

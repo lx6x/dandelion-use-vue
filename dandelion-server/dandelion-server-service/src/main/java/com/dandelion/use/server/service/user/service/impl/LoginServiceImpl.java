@@ -1,5 +1,6 @@
 package com.dandelion.use.server.service.user.service.impl;
 
+import com.dandelion.use.server.core.properties.TokenCustomProperties;
 import com.dandelion.use.server.core.security.util.JwtTokenUtil;
 import com.dandelion.use.server.service.user.service.LoginService;
 import jakarta.annotation.Resource;
@@ -21,8 +22,9 @@ import org.springframework.stereotype.Service;
 public class LoginServiceImpl implements LoginService {
 
     @Resource
+    private TokenCustomProperties tokenCustomProperties;
+    @Resource
     private UserDetailsService userDetailsService;
-
     @Resource
     private PasswordEncoder passwordEncoder;
 
@@ -39,7 +41,6 @@ public class LoginServiceImpl implements LoginService {
         }
         UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());
         SecurityContextHolder.getContext().setAuthentication(authentication);
-
-        return jwtTokenUtil.generateToken(userDetails);
+        return tokenCustomProperties.getPrefix().concat(" ").concat(jwtTokenUtil.generateToken(userDetails));
     }
 }
