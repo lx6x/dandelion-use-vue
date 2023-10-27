@@ -12,12 +12,12 @@ import lombok.Setter;
  */
 @Getter
 @Setter
-@Schema(name = "登录请求")
+@Schema(description = "登录请求")
 public class LoginRequest {
 
-    @Schema(name = "用户名")
+    @Schema(description = "用户名")
     private String userName;
 
-    @Schema(name = "密码")
+    @Schema(description = "密码")
     private String password;
 }

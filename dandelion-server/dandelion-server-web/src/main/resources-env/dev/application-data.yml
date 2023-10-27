@@ -23,19 +23,18 @@ token:
   header: Authorization
   secret: dandelion_dev
   # 过期时间 m
-  expireTime: 60
+  expireTime: 600
 
 security:
   enabled: true
   excludes:
-    - /**.html
-    - /**.css
-    - /**.js
     - /webjars/**
     - /swagger-resources/**
     - /v3/api-docs/**
     - /swagger-ui/**
-    - /favicon.ico
+    - index.html
+    - favicon.ico
+    - doc.html
 
 
 

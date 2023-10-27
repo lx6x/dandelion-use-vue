@@ -1,8 +1,10 @@
 package com.dandelion.use.server.core.security;
 
-import com.dandelion.use.server.core.security.filter.JwtAuthenticationTokenFilter;
 import com.dandelion.use.server.core.properties.SecurityProperties;
 import com.dandelion.use.server.core.properties.TokenCustomProperties;
+import com.dandelion.use.server.core.security.filter.JwtAuthenticationTokenFilter;
+import com.dandelion.use.server.core.security.handler.RestAuthenticationEntryPoint;
+import com.dandelion.use.server.core.security.handler.RestfulAccessDeniedHandler;
 import com.dandelion.use.server.core.security.util.JwtTokenUtil;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -31,14 +33,23 @@ public class SecurityConfig {
 
     private final UserDetailsService userDetailsService;
 
-    public SecurityConfig(SecurityProperties securityProperties, TokenCustomProperties tokenCustomProperties,
-                          JwtTokenUtil jwtTokenUtil, UserDetailsService userDetailsService) {
+    private final RestAuthenticationEntryPoint restAuthenticationEntryPoint;
+
+    private final RestfulAccessDeniedHandler restfulAccessDeniedHandler;
+
+    public SecurityConfig(SecurityProperties securityProperties,
+                          TokenCustomProperties tokenCustomProperties,
+                          JwtTokenUtil jwtTokenUtil,
+                          UserDetailsService userDetailsService,
+                          RestAuthenticationEntryPoint restAuthenticationEntryPoint,
+                          RestfulAccessDeniedHandler restfulAccessDeniedHandler) {
         this.securityProperties = securityProperties;
         this.tokenCustomProperties = tokenCustomProperties;
         this.jwtTokenUtil = jwtTokenUtil;
         this.userDetailsService = userDetailsService;
+        this.restAuthenticationEntryPoint = restAuthenticationEntryPoint;
+        this.restfulAccessDeniedHandler = restfulAccessDeniedHandler;
     }
-
 
     /**
      * 安全过滤器使用 SecurityFilterChain API 插入到 FilterChainProxy 中。
@@ -60,7 +71,11 @@ public class SecurityConfig {
                             // 所有请求都要拦截验证，除了登录成功的除外
                             .anyRequest().authenticated();
                 })
-                .addFilterBefore(authFilter(), UsernamePasswordAuthenticationFilter.class);
+                .addFilterBefore(authFilter(), UsernamePasswordAuthenticationFilter.class)
+                .exceptionHandling(except -> {
+                    // 验证自定义返回
+                    except.accessDeniedHandler(restfulAccessDeniedHandler).authenticationEntryPoint(restAuthenticationEntryPoint);
+                });
         return http.build();
     }
 

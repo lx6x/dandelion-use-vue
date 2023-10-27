@@ -14,10 +14,9 @@ import lombok.Setter;
 @Getter
 @Setter
 @Builder
-@Schema(name = "登录返回")
+@Schema(description = "登录返回")
 public class LoginVo {
 
-
-    @Schema(name = "token")
+    @Schema(description = "token")
     private String token;
 }
