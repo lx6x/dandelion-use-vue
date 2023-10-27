@@ -1,7 +1,7 @@
 package com.dandelion.use.server.core.security.filter;
 
 import com.dandelion.use.server.core.properties.TokenCustomProperties;
-import com.dandelion.use.server.core.utils.JwtTokenUtil;
+import com.dandelion.use.server.core.security.util.JwtTokenUtil;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;

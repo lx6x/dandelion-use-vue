@@ -3,13 +3,15 @@ package com.dandelion.use.server.core.security;
 import com.dandelion.use.server.core.security.filter.JwtAuthenticationTokenFilter;
 import com.dandelion.use.server.core.properties.SecurityProperties;
 import com.dandelion.use.server.core.properties.TokenCustomProperties;
-import com.dandelion.use.server.core.utils.JwtTokenUtil;
+import com.dandelion.use.server.core.security.util.JwtTokenUtil;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
@@ -54,6 +56,7 @@ public class SecurityConfig {
                     registry
                             // 添加排除项
                             .requestMatchers(securityProperties.getExcludes()).permitAll()
+                            .requestMatchers("/sys/login").permitAll()
                             // 所有请求都要拦截验证，除了登录成功的除外
                             .anyRequest().authenticated();
                 })
@@ -64,5 +67,10 @@ public class SecurityConfig {
     @Bean
     public JwtAuthenticationTokenFilter authFilter() throws Exception {
         return new JwtAuthenticationTokenFilter(tokenCustomProperties, jwtTokenUtil, userDetailsService);
+    }
+
+    @Bean
+    public PasswordEncoder passwordEncoder() {
+        return new BCryptPasswordEncoder();
     }
 }

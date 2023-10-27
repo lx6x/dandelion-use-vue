@@ -1,4 +1,4 @@
-package com.dandelion.use.server.core.utils;
+package com.dandelion.use.server.core.security.util;
 
 import com.dandelion.use.server.core.properties.TokenCustomProperties;
 import io.jsonwebtoken.Claims;

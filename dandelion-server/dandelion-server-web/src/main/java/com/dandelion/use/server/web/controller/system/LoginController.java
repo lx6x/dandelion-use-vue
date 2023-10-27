@@ -2,14 +2,13 @@ package com.dandelion.use.server.web.controller.system;
 
 import com.dandelion.use.server.core.result.R;
 import com.dandelion.use.server.service.user.service.LoginService;
+import com.dandelion.use.server.web.controller.system.request.LoginRequest;
+import com.dandelion.use.server.web.controller.system.vo.LoginVo;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.annotation.Resource;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * 登录
@@ -28,14 +27,15 @@ public class LoginController {
     /**
      * 登录
      *
-     * @param userName 用户名
+     * @param loginRequest 用户名
      * @return .
      */
     @Operation(summary = "登录")
-    @PostMapping("/{userName}")
-    public R<String> login(@Parameter(description = "用户名") @PathVariable("userName") String userName) {
-
-
-        return R.success();
+    @PostMapping
+    public R<LoginVo> login(@RequestBody LoginRequest loginRequest) {
+        String userName = loginRequest.getUserName();
+        String password = loginRequest.getPassword();
+        String token = loginService.login(userName, password);
+        return R.success(LoginVo.builder().token(token).build());
     }
 }

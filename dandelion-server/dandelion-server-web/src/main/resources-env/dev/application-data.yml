@@ -26,11 +26,16 @@ token:
   expireTime: 60
 
 security:
-  enabled: false
+  enabled: true
   excludes:
-    - /redis/get/**
-    - /redis/set
-
+    - /**.html
+    - /**.css
+    - /**.js
+    - /webjars/**
+    - /swagger-resources/**
+    - /v3/api-docs/**
+    - /swagger-ui/**
+    - /favicon.ico
 
 
 
