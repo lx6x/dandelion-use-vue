@@ -67,7 +67,7 @@ public class SecurityConfig {
                     registry
                             // 添加排除项
                             .requestMatchers(securityProperties.getExcludes()).permitAll()
-                            .requestMatchers("/sys/login").permitAll()
+                            .requestMatchers("/api/login","/api/logout").permitAll()
                             // 所有请求都要拦截验证，除了登录成功的除外
                             .anyRequest().authenticated();
                 })

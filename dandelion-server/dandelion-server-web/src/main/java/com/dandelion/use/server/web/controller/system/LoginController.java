@@ -5,10 +5,12 @@ import com.dandelion.use.server.service.user.service.LoginService;
 import com.dandelion.use.server.web.controller.system.request.LoginRequest;
 import com.dandelion.use.server.web.controller.system.vo.LoginVo;
 import io.swagger.v3.oas.annotations.Operation;
-import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.annotation.Resource;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 /**
  * 登录
@@ -16,9 +18,9 @@ import org.springframework.web.bind.annotation.*;
  * @author lx6x
  * @date 2023/10/24
  */
-@Tag(name = "登录", description = "用户登录")
+@Tag(name = "登录/登出", description = "用户登录/登出")
 @RestController
-@RequestMapping("/sys/login")
+@RequestMapping("/api")
 public class LoginController {
 
     @Resource
@@ -31,11 +33,22 @@ public class LoginController {
      * @return .
      */
     @Operation(summary = "登录")
-    @PostMapping
+    @PostMapping("/login")
     public R<LoginVo> login(@RequestBody LoginRequest loginRequest) {
         String userName = loginRequest.getUserName();
         String password = loginRequest.getPassword();
         String token = loginService.login(userName, password);
         return R.success(LoginVo.builder().token(token).build());
+    }
+
+    /**
+     * 登出
+     *
+     * @return .
+     */
+    @Operation(summary = "登出")
+    @PostMapping("/logout")
+    public R<String> logout() {
+        return R.success("退出成功");
     }
 }
