@@ -26,6 +26,7 @@ token:
   expireTime: 60
 
 security:
+  enabled: false
   excludes:
     - /redis/get/**
     - /redis/set

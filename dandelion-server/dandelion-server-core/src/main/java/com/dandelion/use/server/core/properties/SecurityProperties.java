@@ -22,4 +22,9 @@ public class SecurityProperties {
      */
     private String[] excludes;
 
+    /**
+     * 是否开启排除
+     */
+    private boolean enabled;
+
 }
