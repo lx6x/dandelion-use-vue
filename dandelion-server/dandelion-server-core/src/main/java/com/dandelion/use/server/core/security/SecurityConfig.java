@@ -1,6 +1,6 @@
-package com.dandelion.use.server.core.config;
+package com.dandelion.use.server.core.security;
 
-import com.dandelion.use.server.core.filter.JwtAuthenticationTokenFilter;
+import com.dandelion.use.server.core.security.filter.JwtAuthenticationTokenFilter;
 import com.dandelion.use.server.core.properties.SecurityProperties;
 import com.dandelion.use.server.core.properties.TokenCustomProperties;
 import com.dandelion.use.server.core.utils.JwtTokenUtil;
@@ -58,7 +58,6 @@ public class SecurityConfig {
                             .anyRequest().authenticated();
                 })
                 .addFilterBefore(authFilter(), UsernamePasswordAuthenticationFilter.class);
-        ;
         return http.build();
     }
 

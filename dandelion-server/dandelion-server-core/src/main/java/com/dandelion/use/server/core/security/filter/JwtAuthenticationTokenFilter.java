@@ -1,4 +1,4 @@
-package com.dandelion.use.server.core.filter;
+package com.dandelion.use.server.core.security.filter;
 
 import com.dandelion.use.server.core.properties.TokenCustomProperties;
 import com.dandelion.use.server.core.utils.JwtTokenUtil;
@@ -6,8 +6,10 @@ import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.lang.NonNull;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -40,12 +42,12 @@ public class JwtAuthenticationTokenFilter extends OncePerRequestFilter {
     }
 
     @Override
-    protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain chain) throws ServletException, IOException {
+    protected void doFilterInternal(@NonNull HttpServletRequest request, @NonNull HttpServletResponse response,@NonNull FilterChain chain) throws ServletException, IOException {
 
         String prefix = this.tokenCustomProperties.getPrefix();
         // 获取自定义请求头
         String authHeader = request.getHeader(this.tokenCustomProperties.getHeader());
-        if (!authHeader.isBlank() && authHeader.startsWith(prefix)) {
+        if (StringUtils.isNotBlank(authHeader) && authHeader.startsWith(prefix)) {
             // 截取实际token
             String authToken = authHeader.substring(prefix.length());
 
