@@ -7,6 +7,7 @@ import com.dandelion.use.server.web.controller.system.vo.LoginVo;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.annotation.Resource;
+import jakarta.annotation.security.PermitAll;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,7 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
  * @author lx6x
  * @date 2023/10/24
  */
-@Tag(name = "登录/登出", description = "用户登录/登出")
+@Tag(name = "登录登出", description = "用户登录登出")
 @RestController
 @RequestMapping("/api")
 public class LoginController {
@@ -32,6 +33,7 @@ public class LoginController {
      * @param loginRequest 用户名
      * @return .
      */
+
     @Operation(summary = "登录")
     @PostMapping("/login")
     public R<LoginVo> login(@RequestBody LoginRequest loginRequest) {
@@ -48,7 +50,7 @@ public class LoginController {
      */
     @Operation(summary = "登出")
     @PostMapping("/logout")
-    public R<String> logout() {
-        return R.success("退出成功");
+    public R<Boolean> logout() {
+        return R.success("登出成功", loginService.logout());
     }
 }

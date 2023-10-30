@@ -14,4 +14,6 @@ public interface RedisConstant {
      */
     String REPEAT_SUBMIT_KEY = "repeat_submit:";
 
+    String TOKEN = "token:";
+
 }

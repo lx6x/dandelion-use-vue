@@ -5,8 +5,6 @@ import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import jakarta.annotation.Resource;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
 
@@ -23,7 +21,6 @@ import java.util.Map;
 @Component
 public class JwtTokenUtil {
 
-    private static final Logger logger = LoggerFactory.getLogger(JwtTokenUtil.class);
     private static final String CLAIM_KEY_USERNAME = "sub";
     private static final String CLAIM_KEY_CREATED = "created";
 
@@ -44,15 +41,15 @@ public class JwtTokenUtil {
     /**
      * 从token中获取JWT中的负载
      */
-    private Claims getClaimsFromToken(String token) {
-        Claims claims = null;
+    private Claims getClaimsFromToken(String token) throws Exception {
+        Claims claims;
         try {
             claims = Jwts.parser()
                     .setSigningKey(tokenCustomProperties.getSecret())
                     .parseClaimsJws(token)
                     .getBody();
         } catch (Exception e) {
-            logger.info("JWT验证失败:{}", token);
+            throw new RuntimeException("JWT验证失败");
         }
         return claims;
     }
@@ -67,15 +64,9 @@ public class JwtTokenUtil {
     /**
      * 从token中获取登录用户名
      */
-    public String getUserNameFromToken(String token) {
-        String username;
-        try {
-            Claims claims = getClaimsFromToken(token);
-            username = claims.getSubject();
-        } catch (Exception e) {
-            username = null;
-        }
-        return username;
+    public String getUserNameFromToken(String token) throws Exception {
+        Claims claims = getClaimsFromToken(token);
+        return claims.getSubject();
     }
 
     /**
@@ -84,7 +75,7 @@ public class JwtTokenUtil {
      * @param token       客户端传入的token
      * @param userDetails 从数据库中查询出来的用户信息
      */
-    public boolean validateToken(String token, UserDetails userDetails) {
+    public boolean validateToken(String token, UserDetails userDetails) throws Exception {
         String username = getUserNameFromToken(token);
         return username.equals(userDetails.getUsername()) && !isTokenExpired(token);
     }
@@ -92,7 +83,7 @@ public class JwtTokenUtil {
     /**
      * 判断token是否已经失效
      */
-    private boolean isTokenExpired(String token) {
+    public boolean isTokenExpired(String token) throws Exception {
         Date expiredDate = getExpiredDateFromToken(token);
         return expiredDate.before(new Date());
     }
@@ -100,7 +91,7 @@ public class JwtTokenUtil {
     /**
      * 从token中获取过期时间
      */
-    private Date getExpiredDateFromToken(String token) {
+    private Date getExpiredDateFromToken(String token) throws Exception {
         Claims claims = getClaimsFromToken(token);
         return claims.getExpiration();
     }
@@ -118,14 +109,14 @@ public class JwtTokenUtil {
     /**
      * 判断token是否可以被刷新
      */
-    public boolean canRefresh(String token) {
+    public boolean canRefresh(String token) throws Exception {
         return !isTokenExpired(token);
     }
 
     /**
      * 刷新token
      */
-    public String refreshToken(String token) {
+    public String refreshToken(String token) throws Exception {
         Claims claims = getClaimsFromToken(token);
         claims.put(CLAIM_KEY_CREATED, new Date());
         return generateToken(claims);

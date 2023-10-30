@@ -16,4 +16,9 @@ public interface LoginService {
      * @return 生成的JWT的token
      */
     String login(String username, String password);
+
+    /**
+     * 登出
+     */
+    boolean logout();
 }

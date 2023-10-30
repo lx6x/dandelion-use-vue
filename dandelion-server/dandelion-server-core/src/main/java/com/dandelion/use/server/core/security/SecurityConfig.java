@@ -58,9 +58,8 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
-                // 默认登录表单验证
-//                .formLogin(withDefaults())
-                // 使用 Jwt
+                .cors(cors->{})
+                // 使用 Jwt,不使用 Session
                 .csrf(AbstractHttpConfigurer::disable)
                 // 对请求验证
                 .authorizeHttpRequests(registry -> {
@@ -75,7 +74,8 @@ public class SecurityConfig {
                 .exceptionHandling(except -> {
                     // 验证自定义返回
                     except.accessDeniedHandler(restfulAccessDeniedHandler).authenticationEntryPoint(restAuthenticationEntryPoint);
-                });
+                })
+                ;
         return http.build();
     }
 
