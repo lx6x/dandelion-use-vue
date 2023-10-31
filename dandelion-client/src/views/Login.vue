@@ -3,8 +3,12 @@
   <el-container class="layout-container">
     <el-main class="main">
       <div class="login">
-        <h1>Login</h1>
-        <el-button type="primary" size="large" @click="login">登录</el-button>
+        <el-form class="login-form">
+          <h1>Login</h1>
+          <el-input>账号</el-input>
+          <el-input>密码</el-input>
+          <el-button type="primary" size="large" @click="login">登录</el-button>
+        </el-form>
       </div>
     </el-main>
     <el-footer class="footer">
@@ -74,6 +78,15 @@ const login = () => {
   top: 30%;
   text-align: center;
   overflow: hidden;
+
+  .login-form {
+    min-width: 320px;
+    max-width: 520px;
+    width: auto;
+    padding: 160px 35px 0;
+    margin: 0 auto;
+    overflow: hidden;
+  }
 }
 
 .layout-container .footer {
@@ -81,4 +94,5 @@ const login = () => {
   text-align: center;
   color: #898080
 }
+
 </style>
