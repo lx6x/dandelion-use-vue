@@ -1,8 +1,6 @@
 package com.dandelion.use.server.core.security.filter;
 
-import cn.hutool.json.JSONUtil;
 import com.dandelion.use.server.core.constant.RedisConstant;
-import com.dandelion.use.server.core.result.R;
 import com.dandelion.use.server.core.security.properties.TokenCustomProperties;
 import com.dandelion.use.server.core.security.util.JwtTokenUtil;
 import com.dandelion.use.server.core.utils.RedisUtil;
@@ -71,13 +69,13 @@ public class JwtAuthenticationTokenFilter extends OncePerRequestFilter {
                         // 从 redis 获取对应 token 用作比对
                         String redisToken = (String) redisUtil.get(concat);
                         // 一致放行，不一致已 redis 中为准
-                        if (StringUtils.equals(token,redisToken)) {
+                        if (StringUtils.equals(token, redisToken)) {
                             UserDetails userDetails = userDetailsService.loadUserByUsername(username);
                             UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());
                             authentication.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
                             SecurityContextHolder.getContext().setAuthentication(authentication);
                         }
-                    }else {
+                    } else {
                         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
                         if (null != authentication) {
                             new SecurityContextLogoutHandler().logout(request, response, authentication);
