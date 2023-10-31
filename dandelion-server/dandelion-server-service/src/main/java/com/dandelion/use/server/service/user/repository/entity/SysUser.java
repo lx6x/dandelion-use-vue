@@ -27,7 +27,7 @@ public class SysUser implements Serializable {
 
     @Schema(description = "主键")
     @TableId(value = "id", type = IdType.AUTO)
-    private Integer id;
+    private Long id;
 
     @Schema(description = "用户名/登录账号")
     private String userName;

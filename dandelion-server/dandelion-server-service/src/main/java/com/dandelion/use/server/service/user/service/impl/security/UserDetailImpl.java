@@ -1,6 +1,7 @@
 package com.dandelion.use.server.service.user.service.impl.security;
 
 import com.dandelion.use.server.service.user.repository.entity.SysUser;
+import lombok.Getter;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -58,7 +59,4 @@ public class UserDetailImpl implements UserDetails {
         return true;
     }
 
-    public SysUser getSysUser() {
-        return sysUser;
-    }
 }

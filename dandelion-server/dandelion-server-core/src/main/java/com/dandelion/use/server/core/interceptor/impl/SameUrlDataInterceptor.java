@@ -4,7 +4,7 @@ import com.alibaba.fastjson2.JSON;
 import com.dandelion.use.server.core.annotation.RepeatSubmit;
 import com.dandelion.use.server.core.constant.RedisConstant;
 import com.dandelion.use.server.core.interceptor.RepeatSubmitInterceptor;
-import com.dandelion.use.server.core.properties.TokenCustomProperties;
+import com.dandelion.use.server.core.security.properties.TokenCustomProperties;
 import com.dandelion.use.server.core.utils.RedisUtil;
 import jakarta.servlet.http.HttpServletRequest;
 import org.apache.commons.lang3.ObjectUtils;

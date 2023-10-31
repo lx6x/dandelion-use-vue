@@ -23,7 +23,7 @@ token:
   header: Authorization
   secret: dandelion_dev
   # 过期时间 m
-  expireTime: 60
+  expireTime: 300
 
 security:
   enabled: true
@@ -35,6 +35,7 @@ security:
     - index.html
     - favicon.ico
     - doc.html
+    - /api/redis/**
 
 
 

@@ -1,11 +1,12 @@
 package com.dandelion.use.server.core.security;
 
-import com.dandelion.use.server.core.properties.SecurityProperties;
-import com.dandelion.use.server.core.properties.TokenCustomProperties;
 import com.dandelion.use.server.core.security.filter.JwtAuthenticationTokenFilter;
 import com.dandelion.use.server.core.security.handler.RestAuthenticationEntryPoint;
 import com.dandelion.use.server.core.security.handler.RestfulAccessDeniedHandler;
+import com.dandelion.use.server.core.security.properties.SecurityProperties;
+import com.dandelion.use.server.core.security.properties.TokenCustomProperties;
 import com.dandelion.use.server.core.security.util.JwtTokenUtil;
+import com.dandelion.use.server.core.utils.RedisUtil;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -37,18 +38,22 @@ public class SecurityConfig {
 
     private final RestfulAccessDeniedHandler restfulAccessDeniedHandler;
 
+    private final RedisUtil redisUtil;
+
     public SecurityConfig(SecurityProperties securityProperties,
                           TokenCustomProperties tokenCustomProperties,
                           JwtTokenUtil jwtTokenUtil,
                           UserDetailsService userDetailsService,
                           RestAuthenticationEntryPoint restAuthenticationEntryPoint,
-                          RestfulAccessDeniedHandler restfulAccessDeniedHandler) {
+                          RestfulAccessDeniedHandler restfulAccessDeniedHandler,
+                          RedisUtil redisUtil) {
         this.securityProperties = securityProperties;
         this.tokenCustomProperties = tokenCustomProperties;
         this.jwtTokenUtil = jwtTokenUtil;
         this.userDetailsService = userDetailsService;
         this.restAuthenticationEntryPoint = restAuthenticationEntryPoint;
         this.restfulAccessDeniedHandler = restfulAccessDeniedHandler;
+        this.redisUtil = redisUtil;
     }
 
     /**
@@ -58,15 +63,16 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
-                .cors(cors->{})
+                .cors(cors -> {
+                })
                 // 使用 Jwt,不使用 Session
                 .csrf(AbstractHttpConfigurer::disable)
                 // 对请求验证
                 .authorizeHttpRequests(registry -> {
                     registry
-                            // 添加排除项
+                            // 请求白名单,可动态配置
                             .requestMatchers(securityProperties.getExcludes()).permitAll()
-                            .requestMatchers("/api/login","/api/logout").permitAll()
+                            .requestMatchers("/api/login").permitAll()
                             // 所有请求都要拦截验证，除了登录成功的除外
                             .anyRequest().authenticated();
                 })
@@ -75,13 +81,13 @@ public class SecurityConfig {
                     // 验证自定义返回
                     except.accessDeniedHandler(restfulAccessDeniedHandler).authenticationEntryPoint(restAuthenticationEntryPoint);
                 })
-                ;
+        ;
         return http.build();
     }
 
     @Bean
     public JwtAuthenticationTokenFilter authFilter() throws Exception {
-        return new JwtAuthenticationTokenFilter(tokenCustomProperties, jwtTokenUtil, userDetailsService);
+        return new JwtAuthenticationTokenFilter(tokenCustomProperties, jwtTokenUtil, userDetailsService, redisUtil);
     }
 
     @Bean

@@ -1,7 +1,11 @@
 package com.dandelion.use.server.core.security.filter;
 
-import com.dandelion.use.server.core.properties.TokenCustomProperties;
+import cn.hutool.json.JSONUtil;
+import com.dandelion.use.server.core.constant.RedisConstant;
+import com.dandelion.use.server.core.result.R;
+import com.dandelion.use.server.core.security.properties.TokenCustomProperties;
 import com.dandelion.use.server.core.security.util.JwtTokenUtil;
+import com.dandelion.use.server.core.utils.RedisUtil;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
@@ -11,10 +15,12 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.lang.NonNull;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.web.authentication.WebAuthenticationDetailsSource;
+import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.web.filter.OncePerRequestFilter;
 
 import java.io.IOException;
@@ -35,33 +41,47 @@ public class JwtAuthenticationTokenFilter extends OncePerRequestFilter {
 
     private final UserDetailsService userDetailsService;
 
-    public JwtAuthenticationTokenFilter(TokenCustomProperties tokenCustomProperties, JwtTokenUtil jwtTokenUtil, UserDetailsService userDetailsService) {
+    private final RedisUtil redisUtil;
+
+    public JwtAuthenticationTokenFilter(TokenCustomProperties tokenCustomProperties, JwtTokenUtil jwtTokenUtil, UserDetailsService userDetailsService, RedisUtil redisUtil) {
         this.tokenCustomProperties = tokenCustomProperties;
         this.jwtTokenUtil = jwtTokenUtil;
         this.userDetailsService = userDetailsService;
+        this.redisUtil = redisUtil;
     }
 
     @Override
     protected void doFilterInternal(@NonNull HttpServletRequest request, @NonNull HttpServletResponse response, @NonNull FilterChain chain) throws ServletException, IOException {
 
-        String prefix = this.tokenCustomProperties.getPrefix();
+        String prefix = this.tokenCustomProperties.getPrefix().concat(" ");
         // 获取自定义请求头
-        String authHeader = request.getHeader(this.tokenCustomProperties.getHeader());
-        if (StringUtils.isNotBlank(authHeader) && authHeader.startsWith(prefix)) {
+        String authHeaderToken = request.getHeader(this.tokenCustomProperties.getHeader());
+        if (StringUtils.isNotBlank(authHeaderToken) && authHeaderToken.startsWith(prefix)) {
             // 截取实际token
-            String authToken = authHeader.substring(prefix.length());
+            String token = authHeaderToken.substring(prefix.length());
 
             try {
                 // 根据token获取登录名
-                String username = jwtTokenUtil.getUserNameFromToken(authToken);
+                String username = jwtTokenUtil.getUserNameFromToken(token);
                 logger.info("当前请求 username: {}", username);
                 if (username != null && SecurityContextHolder.getContext().getAuthentication() == null) {
-                    UserDetails userDetails = userDetailsService.loadUserByUsername(username);
-                    if (jwtTokenUtil.validateToken(authToken, userDetails)) {
-                        UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());
-                        authentication.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
-                        logger.info("authenticated user:{}", username);
-                        SecurityContextHolder.getContext().setAuthentication(authentication);
+                    // 判断 token 是否过期 TODO 不知道这么写会有什么问题
+                    String concat = RedisConstant.TOKEN.concat(username);
+                    if (redisUtil.hasKey(concat)) {
+                        // 从 redis 获取对应 token 用作比对
+                        String redisToken = (String) redisUtil.get(concat);
+                        // 一致放行，不一致已 redis 中为准
+                        if (StringUtils.equals(token,redisToken)) {
+                            UserDetails userDetails = userDetailsService.loadUserByUsername(username);
+                            UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());
+                            authentication.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
+                            SecurityContextHolder.getContext().setAuthentication(authentication);
+                        }
+                    }else {
+                        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+                        if (null != authentication) {
+                            new SecurityContextLogoutHandler().logout(request, response, authentication);
+                        }
                     }
                 }
             } catch (Exception e) {

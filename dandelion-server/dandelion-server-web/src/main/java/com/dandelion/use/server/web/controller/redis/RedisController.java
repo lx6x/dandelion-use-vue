@@ -8,6 +8,8 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.annotation.Resource;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Map;
+
 
 /**
  * redis
@@ -17,7 +19,7 @@ import org.springframework.web.bind.annotation.*;
  */
 @Tag(name = "redis", description = "redis操作,可供测试使用")
 @RestController
-@RequestMapping("/redis")
+@RequestMapping("/api/redis")
 public class RedisController {
 
     @Resource
@@ -38,14 +40,22 @@ public class RedisController {
     /**
      * set
      *
-     * @param key 添加key/value
+     * @param map 添加key/value
      */
-    @Operation(
-            summary = "set",
-            parameters = {@Parameter(name = "key", description = "key值"), @Parameter(name = "value", description = "value值")}
-    )
-    @PostMapping("/set/{key}/{value}")
-    public R<Boolean> set(@PathVariable("key") String key, @PathVariable("value") String value) {
-        return R.success(redisUtil.set(key, value));
+    @Operation(summary = "set")
+    @PostMapping("/set")
+    public R<Boolean> set(@RequestBody Map<String, String> map) {
+        return R.success(redisUtil.set(map.get("key"), map.get("value")));
+    }
+
+    /**
+     * hasKey
+     *
+     * @param key key值
+     */
+    @Operation(summary = "hasKey")
+    @GetMapping("/hasKey/{key}")
+    public R<Boolean> hasKey(@Parameter(name = "key", description = "key值") @PathVariable("key") String key) {
+        return R.success(redisUtil.hasKey(key));
     }
 }

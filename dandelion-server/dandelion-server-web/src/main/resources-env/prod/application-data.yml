@@ -16,11 +16,6 @@ spring:
           max-wait: 1000
       host: localhost
       port: 6379
-  liquibase:
-    enabled: true
-    change-log: classpath:liquibase/master.xml
-    database-change-log-table: databasechangelog
-    database-change-log-lock-table: databasechangeloglock
 
 token:
   header: Authorization
@@ -29,9 +24,15 @@ token:
   expireTime: 600000
 
 security:
-  enabled: false
+  enabled: true
   excludes:
-    - /redis/get/**
-    - /redis/set
+    - /webjars/**
+    - /swagger-resources/**
+    - /v3/api-docs/**
+    - /swagger-ui/**
+    - index.html
+    - favicon.ico
+    - doc.html
+    - /api/redis/**
 
 

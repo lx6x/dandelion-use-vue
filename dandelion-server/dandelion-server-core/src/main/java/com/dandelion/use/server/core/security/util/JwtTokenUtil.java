@@ -1,6 +1,6 @@
 package com.dandelion.use.server.core.security.util;
 
-import com.dandelion.use.server.core.properties.TokenCustomProperties;
+import com.dandelion.use.server.core.security.properties.TokenCustomProperties;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
@@ -21,8 +21,9 @@ import java.util.Map;
 @Component
 public class JwtTokenUtil {
 
-    private static final String CLAIM_KEY_USERNAME = "sub";
-    private static final String CLAIM_KEY_CREATED = "created";
+    private static final String CLAIM_KEY_USERNAME = "sub_user_name";
+    private static final String CLAIM_KEY_CREATED = "sub_created";
+    private static final String CLAIM_KEY_USERID = "sub_user_id";
 
     @Resource
     private TokenCustomProperties tokenCustomProperties;
@@ -66,7 +67,7 @@ public class JwtTokenUtil {
      */
     public String getUserNameFromToken(String token) throws Exception {
         Claims claims = getClaimsFromToken(token);
-        return claims.getSubject();
+        return claims.get(CLAIM_KEY_USERNAME, String.class);
     }
 
     /**
@@ -120,5 +121,18 @@ public class JwtTokenUtil {
         Claims claims = getClaimsFromToken(token);
         claims.put(CLAIM_KEY_CREATED, new Date());
         return generateToken(claims);
+    }
+
+    /**
+     * 获取指定负载
+     *
+     * @param token  .
+     * @param key    键值
+     * @param tClass 返回类型
+     * @param <T>    .
+     */
+    public <T> T get(String token, String key, Class<T> tClass) throws Exception {
+        Claims claims = getClaimsFromToken(token);
+        return claims.get(key, tClass);
     }
 }

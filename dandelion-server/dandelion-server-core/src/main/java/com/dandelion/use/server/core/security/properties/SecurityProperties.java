@@ -1,4 +1,4 @@
-package com.dandelion.use.server.core.properties;
+package com.dandelion.use.server.core.security.properties;
 
 import lombok.Getter;
 import lombok.Setter;
