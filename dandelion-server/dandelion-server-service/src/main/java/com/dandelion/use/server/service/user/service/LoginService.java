@@ -1,5 +1,7 @@
 package com.dandelion.use.server.service.user.service;
 
+import com.dandelion.use.server.service.user.repository.entity.SysUser;
+
 /**
  * 登录
  *
@@ -21,4 +23,13 @@ public interface LoginService {
      * 登出
      */
     boolean logout();
+
+    /**
+     * 注册
+     *
+     * @param sysUser 用户信息
+     */
+    Boolean register(SysUser sysUser);
+
+
 }

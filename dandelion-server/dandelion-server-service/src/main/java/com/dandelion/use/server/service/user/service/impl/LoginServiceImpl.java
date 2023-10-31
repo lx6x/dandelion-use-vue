@@ -4,6 +4,8 @@ import com.dandelion.use.server.core.constant.RedisConstant;
 import com.dandelion.use.server.core.security.properties.TokenCustomProperties;
 import com.dandelion.use.server.core.security.util.JwtTokenUtil;
 import com.dandelion.use.server.core.utils.RedisUtil;
+import com.dandelion.use.server.service.user.repository.dao.SysUserDao;
+import com.dandelion.use.server.service.user.repository.entity.SysUser;
 import com.dandelion.use.server.service.user.service.LoginService;
 import com.dandelion.use.server.service.user.service.impl.security.UserDetailImpl;
 import jakarta.annotation.Resource;
@@ -39,6 +41,9 @@ public class LoginServiceImpl implements LoginService {
     @Resource
     private RedisUtil redisUtil;
 
+    @Resource
+    private SysUserDao sysUserDao;
+
     @Override
     public String login(String username, String password) {
         UserDetailImpl userDetails = (UserDetailImpl) userDetailsService.loadUserByUsername(username);
@@ -62,8 +67,16 @@ public class LoginServiceImpl implements LoginService {
         UsernamePasswordAuthenticationToken authentication =
                 (UsernamePasswordAuthenticationToken) SecurityContextHolder.getContext().getAuthentication();
         UserDetailImpl userDetails = (UserDetailImpl) authentication.getPrincipal();
-        String username= userDetails.getUsername();
+        String username = userDetails.getUsername();
         redisUtil.del(RedisConstant.TOKEN.concat(username));
         return true;
+    }
+
+    @Override
+    public Boolean register(SysUser sysUser) {
+        String password = sysUser.getPassword();
+        String encode = passwordEncoder.encode(password);
+        sysUser.setPassword(encode);
+        return sysUserDao.addUser(sysUser);
     }
 }

@@ -1,8 +1,11 @@
 package com.dandelion.use.server.web.controller.system;
 
 import com.dandelion.use.server.core.result.R;
+import com.dandelion.use.server.service.user.repository.entity.SysUser;
 import com.dandelion.use.server.service.user.service.LoginService;
+import com.dandelion.use.server.web.controller.system.converter.LoginConverter;
 import com.dandelion.use.server.web.controller.system.request.LoginRequest;
+import com.dandelion.use.server.web.controller.system.request.UserRegisterRequest;
 import com.dandelion.use.server.web.controller.system.vo.LoginVo;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -30,7 +33,6 @@ public class LoginController {
      * 登录
      *
      * @param loginRequest 用户名
-     * @return .
      */
 
     @Operation(summary = "登录")
@@ -51,5 +53,24 @@ public class LoginController {
     @PostMapping("/logout")
     public R<Boolean> logout() {
         return R.success("登出成功", loginService.logout());
+    }
+
+    /**
+     * 注册
+     */
+    @Operation(summary = "注册")
+    @PostMapping("/register")
+    public R<Boolean> register(@RequestBody UserRegisterRequest request) {
+        SysUser sysUser = LoginConverter.INSTANCE.register2SysUser(request);
+        return R.success(loginService.register(sysUser));
+    }
+
+    /**
+     * 刷新令牌
+     */
+    @Operation(summary = "刷新令牌")
+    @PostMapping("/refresh")
+    public R<String> refresh() {
+        return R.success();
     }
 }

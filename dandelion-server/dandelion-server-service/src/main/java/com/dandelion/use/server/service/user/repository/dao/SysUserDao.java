@@ -4,7 +4,6 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.dandelion.use.server.service.user.repository.entity.SysUser;
 import com.dandelion.use.server.service.user.repository.mapper.SysUserMapper;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 /**
@@ -28,5 +27,14 @@ public class SysUserDao extends ServiceImpl<SysUserMapper, SysUser> {
         QueryWrapper<SysUser> queryWrapper = new QueryWrapper<>();
         queryWrapper.eq("user_name", userName);
         return getOne(queryWrapper);
+    }
+
+    /**
+     * 添加用户
+     *
+     * @param sysUser 用户
+     */
+    public boolean addUser(SysUser sysUser) {
+        return save(sysUser);
     }
 }
