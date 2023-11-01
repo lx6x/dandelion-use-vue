@@ -72,7 +72,7 @@ public class SecurityConfig {
                     registry
                             // 请求白名单,可动态配置
                             .requestMatchers(securityProperties.getExcludes()).permitAll()
-                            .requestMatchers("/api/login","/api/register").permitAll()
+                            .requestMatchers("/api/login", "/api/register").permitAll()
                             // 所有请求都要拦截验证，除了登录成功的除外
                             .anyRequest().authenticated();
                 })
