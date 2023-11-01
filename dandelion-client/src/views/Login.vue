@@ -29,7 +29,7 @@
       </div>
     </el-main>
     <el-footer class="footer">
-      京ICP备2021004282号-1
+      xxx
     </el-footer>
   </el-container>
 </template>
