@@ -16,8 +16,7 @@ const pathSrc = path.resolve(__dirname, 'src')
 export default defineConfig({
     resolve: {
         alias: {
-            '~/': `${pathSrc}/`,
-            '@/': `${pathSrc}/`
+            '~/': `${pathSrc}/`
         },
     },
     plugins: [
