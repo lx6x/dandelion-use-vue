@@ -71,7 +71,7 @@ public class JwtAuthenticationTokenFilter extends OncePerRequestFilter {
                         // 一致放行，不一致已 redis 中为准
                         if (StringUtils.equals(token, redisToken)) {
                             UserDetails userDetails = userDetailsService.loadUserByUsername(username);
-                            UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());
+                            UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(userDetails, userDetails.getAuthorities());
                             authentication.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
                             SecurityContextHolder.getContext().setAuthentication(authentication);
                         }

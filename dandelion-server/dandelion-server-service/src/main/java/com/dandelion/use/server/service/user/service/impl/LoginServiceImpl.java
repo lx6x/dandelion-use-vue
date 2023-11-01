@@ -1,6 +1,7 @@
 package com.dandelion.use.server.service.user.service.impl;
 
 import com.dandelion.use.server.core.constant.RedisConstant;
+import com.dandelion.use.server.core.exception.GlobalException;
 import com.dandelion.use.server.core.security.properties.TokenCustomProperties;
 import com.dandelion.use.server.core.security.util.JwtTokenUtil;
 import com.dandelion.use.server.core.utils.RedisUtil;
@@ -14,8 +15,10 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Collection;
 
@@ -33,7 +36,7 @@ public class LoginServiceImpl implements LoginService {
     @Resource
     private UserDetailsService userDetailsService;
     @Resource
-    private PasswordEncoder passwordEncoder;
+    private BCryptPasswordEncoder passwordEncoder;
 
     @Resource
     private JwtTokenUtil jwtTokenUtil;
@@ -53,7 +56,7 @@ public class LoginServiceImpl implements LoginService {
             throw new BadCredentialsException("密码不正确");
         }
         Collection<? extends GrantedAuthority> authorities = userDetails.getAuthorities();
-        UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(userDetails, null, authorities);
+        UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(userDetails, authorities);
         SecurityContextHolder.getContext().setAuthentication(authentication);
         String token = jwtTokenUtil.generateToken(userDetails);
         // jwt 无状态，使用 redis 做主动下线
@@ -73,10 +76,17 @@ public class LoginServiceImpl implements LoginService {
     }
 
     @Override
+    @Transactional(rollbackFor = Exception.class)
     public Boolean register(SysUser sysUser) {
         String password = sysUser.getPassword();
         String encode = passwordEncoder.encode(password);
         sysUser.setPassword(encode);
-        return sysUserDao.addUser(sysUser);
+        boolean addUser;
+        try {
+            addUser = sysUserDao.addUser(sysUser);
+        } catch (GlobalException e) {
+            throw new GlobalException(e.getMessage());
+        }
+        return addUser;
     }
 }

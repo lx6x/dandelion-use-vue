@@ -1,7 +1,6 @@
 package com.dandelion.use.server.service.user.service.impl.security;
 
 import com.dandelion.use.server.service.user.repository.entity.SysUser;
-import lombok.Getter;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -24,36 +23,61 @@ public class UserDetailImpl implements UserDetails {
         this.sysUser = sysUser;
     }
 
+    /**
+     * 将应用程序用户的权限返回成一个GrantedAuthority实例集合
+     */
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return null;
     }
 
+    /**
+     * 密码
+     */
     @Override
     public String getPassword() {
         return this.sysUser.getPassword();
     }
 
+    /**
+     * 用户名
+     */
     @Override
     public String getUsername() {
         return this.sysUser.getUserName();
     }
 
+    /**
+     * 账号是否在有效期内
+     * @return true-有效 false-无效
+     */
     @Override
     public boolean isAccountNonExpired() {
         return true;
     }
 
+    /**
+     * 锁定
+     * @return true-未锁定 false-锁定
+     */
     @Override
     public boolean isAccountNonLocked() {
         return true;
     }
 
+    /**
+     * 凭据(密码)是否在有效期内
+     * @return true-有效 false-无效
+     */
     @Override
     public boolean isCredentialsNonExpired() {
         return true;
     }
 
+    /**
+     * 启用禁用
+     * @return true-启用 false-禁用
+     */
     @Override
     public boolean isEnabled() {
         return true;

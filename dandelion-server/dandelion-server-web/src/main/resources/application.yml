@@ -6,5 +6,7 @@ spring:
     - application-data.yml
     - application-doc.yml
     - application-liquibase.yml
-
+mybatis-plus:
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
 
