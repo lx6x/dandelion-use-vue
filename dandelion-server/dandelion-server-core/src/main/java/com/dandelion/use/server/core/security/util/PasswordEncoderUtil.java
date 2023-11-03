@@ -35,6 +35,8 @@ public class PasswordEncoderUtil {
 
     public static void main(String[] args) {
         String s = encryptPassword("123456");
+        // $2a$10$AcgSWCv8E/WI7.LgbXFj7.wZppFDAll3Od6DlXjDWgIGjfrMrnEHa
+        // $2a$10$3/ADjARxjzxo2uMCZNNbZ.DE260HjwC52UYtmOwWJ432NvHxXueKK
         System.out.println(s);
     }
 }

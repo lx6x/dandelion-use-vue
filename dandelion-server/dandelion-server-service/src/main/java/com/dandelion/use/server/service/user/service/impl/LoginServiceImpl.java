@@ -56,7 +56,7 @@ public class LoginServiceImpl implements LoginService {
             throw new BadCredentialsException("密码不正确");
         }
         Collection<? extends GrantedAuthority> authorities = userDetails.getAuthorities();
-        UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(userDetails, authorities);
+        UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(username, userDetailsPassword,authorities);
         SecurityContextHolder.getContext().setAuthentication(authentication);
         String token = jwtTokenUtil.generateToken(userDetails);
         // jwt 无状态，使用 redis 做主动下线
