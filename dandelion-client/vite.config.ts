@@ -72,13 +72,13 @@ export default defineConfig({
         proxy: {
             '/api': {
                 // 目标接口前缀
-                target: 'http://localhost:8081',
+                target: 'http://localhost:22333',
                 // 开启跨域
                 changeOrigin: true,
                 // 路径重写
                 rewrite: (path) => path.replace(/\/api/, '')
             }
         }
-    },
+    }
 
 })
