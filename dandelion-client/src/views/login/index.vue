@@ -47,16 +47,14 @@ const loginForm = reactive({
 
 const login = async () => {
 
-  authStore.login();
-
-
   const response = await axios.post('http://localhost:22333/api/login', loginForm)
+
   if (response.data.code == 200) {
     ElMessage({
       message: '登录成功',
       type: 'success'
     });
-
+    authStore.login();
     await router.push({name: 'home'});
   } else {
     ElMessage({
