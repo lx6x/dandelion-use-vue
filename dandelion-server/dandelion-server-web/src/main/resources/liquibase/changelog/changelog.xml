@@ -11,10 +11,9 @@
 
     <changeSet id="00000000000002" author="lx6x">
         <sqlFile path="liquibase/data/init_schema_2023_10_26.sql" dbms="mysql" endDelimiter=";"/>
-        <sqlFile path="liquibase/data/init_data_2023_10_26.sql" dbms="mysql" endDelimiter=";"/>
     </changeSet>
 
     <changeSet id="00000000000003" author="lx6x">
-        <sqlFile path="liquibase/data/update_schema_2023_10_31.sql" dbms="mysql" endDelimiter=";"/>
+        <sqlFile path="liquibase/data/init_schema_2023_11_06.sql" dbms="mysql" endDelimiter=";"/>
     </changeSet>
 </databaseChangeLog>

@@ -25,13 +25,11 @@ public class SysUserDao extends ServiceImpl<SysUserMapper, SysUser> {
      * @return SysUser
      */
     public SysUser getByUserName(String userName) {
-        QueryWrapper<SysUser> queryWrapper = new QueryWrapper<>();
-        queryWrapper.eq("user_name", userName);
-        return getOne(queryWrapper);
+        return this.baseMapper.getUserRoleInfo(userName);
     }
 
     /**
-     * 添加用户
+     * 添加用户 - 不带权限信息
      *
      * @param sysUser 用户
      */

@@ -6,6 +6,8 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 
 import java.util.Collection;
+import java.util.LinkedList;
+import java.util.List;
 
 /**
  * @author liujunfei
@@ -49,6 +51,7 @@ public class UserDetailImpl implements UserDetails {
 
     /**
      * 账号是否在有效期内
+     *
      * @return true-有效 false-无效
      */
     @Override
@@ -58,6 +61,7 @@ public class UserDetailImpl implements UserDetails {
 
     /**
      * 锁定
+     *
      * @return true-未锁定 false-锁定
      */
     @Override
@@ -67,6 +71,7 @@ public class UserDetailImpl implements UserDetails {
 
     /**
      * 凭据(密码)是否在有效期内
+     *
      * @return true-有效 false-无效
      */
     @Override
@@ -76,6 +81,7 @@ public class UserDetailImpl implements UserDetails {
 
     /**
      * 启用禁用
+     *
      * @return true-启用 false-禁用
      */
     @Override

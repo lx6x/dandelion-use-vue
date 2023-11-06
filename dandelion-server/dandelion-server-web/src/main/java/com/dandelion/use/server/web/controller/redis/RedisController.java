@@ -31,6 +31,7 @@ public class RedisController {
      *
      * @param key key
      */
+    // @PreAuthorize("hasRole('redis')")
     @Operation(summary = "get")
     @GetMapping("/get/{key}")
     public R<Object> get(@Parameter(description = "key值") @PathVariable("key") String key) {
