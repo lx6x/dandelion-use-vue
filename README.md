@@ -24,7 +24,7 @@ dandelion-use
 
 ## 实现
  
-[Spring Security + Jwt 登录实现](dandelion-server/doc/pdf/SpringSecurity+Jwt登录实现.pdf)
+[Spring Security + Jwt 登录实现](dandelion-server/doc/md/SpringSecurity+Jwt登录实现.md)
 
 ## VUE
 

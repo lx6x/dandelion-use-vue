@@ -6,6 +6,7 @@ import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.annotation.Resource;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Map;
@@ -31,7 +32,7 @@ public class RedisController {
      *
      * @param key key
      */
-    // @PreAuthorize("hasRole('redis')")
+    @PreAuthorize("hasRole('redis')")
     @Operation(summary = "get")
     @GetMapping("/get/{key}")
     public R<Object> get(@Parameter(description = "key值") @PathVariable("key") String key) {

@@ -1,5 +1,6 @@
 spring:
   liquibase:
+    # 不用一直开
     enabled: false
     change-log: classpath:/liquibase/master.xml
     database-change-log-table: databasechangelog

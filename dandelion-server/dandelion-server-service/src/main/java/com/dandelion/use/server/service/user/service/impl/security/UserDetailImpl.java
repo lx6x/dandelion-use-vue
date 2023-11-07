@@ -1,5 +1,6 @@
 package com.dandelion.use.server.service.user.service.impl.security;
 
+import com.dandelion.use.server.service.user.repository.entity.SysRole;
 import com.dandelion.use.server.service.user.repository.entity.SysUser;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -8,6 +9,8 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import java.util.Collection;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 /**
  * @author liujunfei
@@ -30,7 +33,8 @@ public class UserDetailImpl implements UserDetails {
      */
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return null;
+        Set<SysRole> roles = this.sysUser.getRoles();
+        return roles.stream().map(map -> new GrantedAuthorityImpl("ROLE_".concat(map.getRoleName()))).collect(Collectors.toList());
     }
 
     /**
