@@ -20,6 +20,7 @@ import java.util.Map;
  */
 @Tag(name = "redis", description = "redis操作,可供测试使用")
 @RestController
+@PreAuthorize("hasRole('redis')")
 @RequestMapping("/api/redis")
 public class RedisController {
 
@@ -32,7 +33,6 @@ public class RedisController {
      *
      * @param key key
      */
-    @PreAuthorize("hasRole('redis')")
     @Operation(summary = "get")
     @GetMapping("/get/{key}")
     public R<Object> get(@Parameter(description = "key值") @PathVariable("key") String key) {
