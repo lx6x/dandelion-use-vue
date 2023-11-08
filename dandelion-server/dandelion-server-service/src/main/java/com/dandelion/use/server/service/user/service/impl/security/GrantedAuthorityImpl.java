@@ -3,12 +3,14 @@ package com.dandelion.use.server.service.user.service.impl.security;
 import org.springframework.security.core.GrantedAuthority;
 
 /**
- * @author lx6x
- * @date 2023/11/7
+ * 表示授予身份验证对象的权限
+ *
+ * @author liujunfei
+ * @date 2023/11/6
  */
 public class GrantedAuthorityImpl implements GrantedAuthority {
 
-    private String authority;
+    private final String authority;
 
     public GrantedAuthorityImpl(String authority) {
         this.authority = authority;
@@ -16,7 +18,7 @@ public class GrantedAuthorityImpl implements GrantedAuthority {
 
     @Override
     public String getAuthority() {
-        return authority;
+        return this.authority;
     }
 
     @Override
