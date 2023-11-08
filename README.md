@@ -16,10 +16,10 @@ dandelion-use
 
 | 框架             | 版本 | 说明       | 
 |----------------|----|----------|
-| Springboot     |    | 容器+MVC框架 |
-| Druid          |    | 阿里数据库连接池 |
-| Mybatis-Plus   |    | ORM框架    |
-| Knife4j        |    | 文档生产工具   |
+| Springboot     | 3.1.5   | 容器+MVC框架 |
+| Druid          | 1.2.8   | 阿里数据库连接池 |
+| Mybatis-Plus   | 3.5.3.1   | ORM框架    |
+| Knife4j        | 4.1.0   | 文档生产工具   |
 | Redis          |    | 缓存    |
 
 ## 实现
