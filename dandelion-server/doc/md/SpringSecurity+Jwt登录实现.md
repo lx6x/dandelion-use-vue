@@ -47,7 +47,8 @@ public class HelloController {
 ```
 
 ### 用到的 security 类
-* UsernamePasswordAuthenticationToken 用户名和密码验证
+* AbstractAuthenticationToken 身份验证基类
+  * UsernamePasswordAuthenticationToken 用户名和密码验证
 * AuthenticationManager 认证相关的核心接口 
 * Authentication 封装用户的验证请求信息
 

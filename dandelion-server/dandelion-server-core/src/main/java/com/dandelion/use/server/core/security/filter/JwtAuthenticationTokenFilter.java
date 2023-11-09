@@ -76,7 +76,7 @@ public class JwtAuthenticationTokenFilter extends OncePerRequestFilter {
                             UserDetails userDetails = userDetailsService.loadUserByUsername(username);
                             Collection<? extends GrantedAuthority> authorities = userDetails.getAuthorities();
                             logger.info("当前权限用户权限：{}",authorities);
-                            UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(username, userDetails.getPassword(),authorities);
+                            UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(userDetails, null,authorities);
                             authentication.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
                             SecurityContextHolder.getContext().setAuthentication(authentication);
                         }
