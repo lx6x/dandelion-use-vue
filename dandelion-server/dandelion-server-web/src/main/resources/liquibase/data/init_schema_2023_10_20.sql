@@ -7,5 +7,4 @@ CREATE TABLE `sys_menus`
     `is_hidden` tinyint(1) DEFAULT '0' COMMENT '是否隐藏菜单项 (0-false 1-true)',
     PRIMARY KEY (`id`)
 ) ENGINE = InnoDB
-  AUTO_INCREMENT = 7
   DEFAULT CHARSET = utf8mb3 COMMENT ='菜单信息';

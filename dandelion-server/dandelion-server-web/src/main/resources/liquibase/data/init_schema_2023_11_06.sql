@@ -28,6 +28,10 @@ CREATE TABLE `sys_user_role`
 INSERT INTO `sys_user_role` (`id`, `user_id`, `role_id`) VALUES (1, 1, 1);
 INSERT INTO `sys_user_role` (`id`, `user_id`, `role_id`) VALUES (2, 2, 2);
 
+# 权限验证
+# INSERT INTO `sys_role` (`role_name`) VALUES ('redis');
+# INSERT INTO `sys_user_role` (`user_id`, `role_id`) VALUES (1, 4);
+
 
 # CREATE TABLE `sys_auth`
 # (
