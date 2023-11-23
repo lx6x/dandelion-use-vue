@@ -27,6 +27,7 @@
         <mybatis-plus.version>3.5.3.1</mybatis-plus.version>
         <velocity-engine.version>2.3</velocity-engine.version>
         <mapstruct.version>1.5.5.Final</mapstruct.version>
+        <kaptcha.version>2.3.2</kaptcha.version>
     </properties>
 
     <dependencyManagement>
@@ -128,6 +129,13 @@
                 <groupId>org.projectlombok</groupId>
                 <artifactId>lombok-mapstruct-binding</artifactId>
                 <version>0.2.0</version>
+            </dependency>
+
+            <!--     图形验证码生成       -->
+            <dependency>
+                <groupId>com.github.penggle</groupId>
+                <artifactId>kaptcha</artifactId>
+                <version>${kaptcha.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
