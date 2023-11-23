@@ -35,6 +35,7 @@ security:
     - index.html
     - favicon.ico
     - doc.html
+    - /captcha
 #    - /api/redis/**
 
 

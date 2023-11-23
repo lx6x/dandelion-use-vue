@@ -74,14 +74,15 @@ public class SecurityConfig {
                 .csrf(AbstractHttpConfigurer::disable)
                 // 对请求验证
                 .authorizeHttpRequests(registry -> {
-                    registry
-                            // 请求白名单,可动态配置
-                            .requestMatchers(securityProperties.getExcludes()).permitAll()
-                            .requestMatchers("/api/login", "/api/register").permitAll()
-                            // 所有请求都要拦截验证，除了登录成功的除外
-                            .anyRequest().authenticated();
+                    if (securityProperties.isEnabled()) {
+                        // 请求白名单,可动态配置
+                        registry.requestMatchers(securityProperties.getExcludes()).permitAll();
+                    }
+                    registry.requestMatchers("/api/login", "/api/register").permitAll();
+                    // 所有请求都要拦截验证，除了登录成功的除外
+                    registry.anyRequest().authenticated();
                 })
-                .addFilterBefore(authFilter(), UsernamePasswordAuthenticationFilter.class)
+                .addFilterBefore(jwtAuthenticationTokenFilter(), UsernamePasswordAuthenticationFilter.class)
                 .exceptionHandling(except -> {
                     // 验证自定义返回
                     except.accessDeniedHandler(restfulAccessDeniedHandler).authenticationEntryPoint(restAuthenticationEntryPoint);
@@ -91,7 +92,7 @@ public class SecurityConfig {
     }
 
     @Bean
-    public JwtAuthenticationTokenFilter authFilter() throws Exception {
+    public JwtAuthenticationTokenFilter jwtAuthenticationTokenFilter() throws Exception {
         return new JwtAuthenticationTokenFilter(tokenCustomProperties, jwtTokenUtil, userDetailsService, redisUtil);
     }
 
