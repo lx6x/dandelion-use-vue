@@ -16,4 +16,6 @@ public interface RedisConstant {
 
     String TOKEN = "token:";
 
+    String captcha = "captcha:";
+
 }
