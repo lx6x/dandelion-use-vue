@@ -6,6 +6,7 @@ import jakarta.annotation.Resource;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.provisioning.JdbcUserDetailsManager;
 import org.springframework.stereotype.Service;
 
 /**
@@ -22,6 +23,15 @@ public class UserDetailServiceImpl implements UserDetailsService {
     public UserDetailImpl loadUserByUsername(String username) throws UsernameNotFoundException {
         SysUser sysUser = sysUserDao.getByUserName(username);
         return new UserDetailImpl(sysUser);
+    }
+
+    /**
+     * jdbc 用户管理实现
+     */
+    public JdbcUserDetailsManager jdbcManager(){
+        JdbcUserDetailsManager manager=new JdbcUserDetailsManager();
+        manager.userExists("");
+        return manager;
     }
 
 }

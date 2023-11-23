@@ -78,6 +78,7 @@ public class JwtAuthenticationTokenFilter extends OncePerRequestFilter {
                             logger.info("当前权限用户权限：{}",authorities);
                             UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(userDetails, null,authorities);
                             authentication.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
+                            // 将已认证的 Authentication 放入 SecurityContextHolder 中
                             SecurityContextHolder.getContext().setAuthentication(authentication);
                         }
                     } else {
